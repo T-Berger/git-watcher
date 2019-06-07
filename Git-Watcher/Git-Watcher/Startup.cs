@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Git_Watcher.DataAccess;
+using Git_Watcher.DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -26,6 +29,11 @@ namespace Git_Watcher
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            var connection = @"Server=localhost\sqlexpress;Database=gitwatcher;Integrated Security=True;";
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+            services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<IGitRepo, GitRepo>();
+            services.AddScoped<ISubscriptionRepo, SubscriptionRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
