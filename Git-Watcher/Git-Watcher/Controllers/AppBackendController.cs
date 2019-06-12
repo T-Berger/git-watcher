@@ -10,6 +10,7 @@ namespace Git_Watcher.Controllers
 {
     [Route("api/[controller]/v1")]
     [ApiController]
+    [Produces("application/json")]
     public class AppBackendController : ControllerBase
     {
         private readonly IUserRepo _userRepo;
@@ -19,6 +20,11 @@ namespace Git_Watcher.Controllers
             _userRepo = userRepo;
         }
 
+        /// <summary>
+        ///     Create a new user
+        /// </summary>
+        /// <param name="name">the name of the user</param>
+        /// <returns>the created user</returns>
         [HttpPost]
         [Route("createUser")]
         public ActionResult CreateUser(string name)
