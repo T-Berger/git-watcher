@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Git_Watcher.DataAccess.Repositories;
 using Git_Watcher.Models;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Git_Watcher.Controllers
 {
@@ -14,10 +15,12 @@ namespace Git_Watcher.Controllers
     public class AppBackendController : ControllerBase
     {
         private readonly IUserRepo _userRepo;
+        private readonly ILogger _logger;
 
-        public AppBackendController(IUserRepo userRepo)
+        public AppBackendController(IUserRepo userRepo, ILogger logger)
         {
             _userRepo = userRepo;
+            _logger = logger;
         }
 
         /// <summary>
@@ -29,6 +32,7 @@ namespace Git_Watcher.Controllers
         [Route("createUser")]
         public ActionResult CreateUser(string name)
         {
+            _logger.Information("Hello there");
             if (name.Length > 39)
             {
                 ModelState.AddModelError("UserError", "User name cannot be longer than 39 characters!");
