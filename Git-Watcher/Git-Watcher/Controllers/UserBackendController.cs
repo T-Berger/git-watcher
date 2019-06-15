@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Git_Watcher.DataAccess.Repositories;
 using Git_Watcher.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,23 +12,17 @@ namespace Git_Watcher.Controllers
 {
     [Route("api/[controller]/v1")]
     [ApiController]
-    [Produces("application/json")]
-    public class AppBackendController : ControllerBase
+    public class UserBackendController : ControllerBase
     {
-        private readonly IUserRepo _userRepo;
         private readonly ILogger _logger;
+        private readonly IUserRepo _userRepo;
 
-        public AppBackendController(IUserRepo userRepo, ILogger<AppBackendController> logger)
+        public UserBackendController(ILogger<UserBackendController> logger, IUserRepo userRepo)
         {
-            _userRepo = userRepo;
             _logger = logger;
+            _userRepo = userRepo;
         }
 
-        /// <summary>
-        ///     Create a new user
-        /// </summary>
-        /// <param name="name">the name of the user</param>
-        /// <returns>the created user</returns>
         [HttpPost]
         [Route("createUser")]
         public ActionResult CreateUser(string name)
@@ -46,6 +41,24 @@ namespace Git_Watcher.Controllers
             var u = new User { GitUserName = name };
             _userRepo.Save(u);
             return CreatedAtAction(nameof(CreateUser), new { key = u.ApiKey });
+        }
+
+        [HttpGet]
+        [Route("getUser")]
+        public ActionResult GetUser(Guid id)
+        {
+            var user = _userRepo.Get(id);
+            if (user == null)
+                return NotFound("User not found!");
+            return Ok($"Username: {user.GitUserName}");
+        }
+
+        [HttpDelete]
+        [Route("deleteUser")]
+        public ActionResult DeleteUser(Guid id)
+        {
+            _userRepo.Delete(id);
+            return Ok("User deleted");
         }
     }
 }
