@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Android;
 using Android.App;
 using Android.OS;
@@ -8,6 +9,9 @@ using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
+using Android.Widget;
+using Octokit;
+using PCLStorage;
 
 namespace Git_Watcher_Client
 {
@@ -22,8 +26,8 @@ namespace Git_Watcher_Client
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
-            FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
-            fab.Click += FabOnClick;
+            Button loginBtn = FindViewById<Button>(Resource.Id.loginBtn);
+            loginBtn.Click += OnLoginBtnClick;
 
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
@@ -33,6 +37,8 @@ namespace Git_Watcher_Client
             NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
         }
+
+
 
         public override void OnBackPressed()
         {
@@ -64,11 +70,41 @@ namespace Git_Watcher_Client
             return base.OnOptionsItemSelected(item);
         }
 
-        private void FabOnClick(object sender, EventArgs eventArgs)
+
+        private async void OnLoginBtnClick(object sender, EventArgs eventArgs)
         {
-            View view = (View) sender;
-            Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
-                .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+            EditText email = FindViewById<EditText>(Resource.Id.emailTxt);
+            EditText password = FindViewById<EditText>(Resource.Id.passwordTxt);
+            if (string.IsNullOrEmpty(email.Text))
+            {
+                return;
+            }
+            GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("Git-Watcher"));
+            Credentials cred = new Credentials(email.Text, password.Text);
+            gitHubClient.Connection.Credentials = cred;
+            try
+            {
+                var user = await gitHubClient.User.Current();
+                //var res = await gitHubClient.GitHubApps.CreateInstallationToken(42);
+                //SaveUserData(res.Token, user.Login);
+                View view = (View)sender;
+                Snackbar.Make(view, $"Authentication Successfull!! Welcome {user.Login}", Snackbar.LengthLong)
+                    .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+            } catch(Exception e)
+            {
+                View view = (View)sender;
+                Snackbar.Make(view, "Could not authenticate user", Snackbar.LengthLong)
+                    .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+            }
+        }
+        private async void SaveUserData(string token, string username)
+        {
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+            IFolder folder = await rootFolder.CreateFolderAsync("UserData",
+                CreationCollisionOption.OpenIfExists);
+            IFile file = await folder.CreateFileAsync("answer.txt",
+                CreationCollisionOption.ReplaceExisting);
+            await file.WriteAllTextAsync($"user:{username};token:{token}");
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)
