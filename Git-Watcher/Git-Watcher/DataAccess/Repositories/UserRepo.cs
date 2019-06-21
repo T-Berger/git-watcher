@@ -14,7 +14,7 @@ namespace Git_Watcher.DataAccess.Repositories
         void Save(User u);
         void Delete(Guid id);
     }
-    public class UserRepo : IDisposable, IUserRepo
+    public class UserRepo : IUserRepo
     {
         private DataContext _context;
         public UserRepo(DataContext context)
@@ -27,11 +27,6 @@ namespace Git_Watcher.DataAccess.Repositories
             if (user != null)
                 _context.Users.Remove(user);
             _context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            _context.Dispose();
         }
 
         public User Get(string name)

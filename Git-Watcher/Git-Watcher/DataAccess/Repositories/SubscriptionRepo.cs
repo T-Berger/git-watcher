@@ -14,9 +14,14 @@ namespace Git_Watcher.DataAccess.Repositories
         void Delete(Guid id);
         void Save(Subscription s);
     }
-    public class SubscriptionRepo : IDisposable, ISubscriptionRepo
+    public class SubscriptionRepo : ISubscriptionRepo
     {
         private DataContext _context;
+
+        public SubscriptionRepo(DataContext context)
+        {
+            _context = context;
+        }
 
         public void Delete(Guid id)
         {
@@ -24,11 +29,6 @@ namespace Git_Watcher.DataAccess.Repositories
             if (id != null)
                 _context.Subscriptions.Remove(s);
             _context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            _context.Dispose();
         }
 
         public List<Subscription> GetByUser(Guid id)

@@ -13,7 +13,7 @@ namespace Git_Watcher.DataAccess.Repositories
         void Delete(Guid id);
         void Save(GitRepository g);
     }
-    public class GitRepo : IDisposable, IGitRepo
+    public class GitRepo : IGitRepo
     {
         private DataContext _context;
 
@@ -28,11 +28,6 @@ namespace Git_Watcher.DataAccess.Repositories
             if (g != null)
                 _context.GitRepos.Remove(g);
             _context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            _context.Dispose();
         }
 
         public GitRepository Get(string name)
