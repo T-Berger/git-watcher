@@ -19,7 +19,7 @@ namespace Git_Watcher.Controllers
         private readonly ILogger _logger;
         private readonly IGitRepo _gitRepo;
 
-        public RepoApiController(ISubscriptionRepo subscriptionRepo ,IUserRepo userRepo, IGitRepo gitRepo, ILogger logger)
+        public RepoApiController(ISubscriptionRepo subscriptionRepo ,IUserRepo userRepo, IGitRepo gitRepo, ILogger<RepoApiController> logger)
         {
             _subscriptionRepo = subscriptionRepo;
             _userRepo = userRepo;
