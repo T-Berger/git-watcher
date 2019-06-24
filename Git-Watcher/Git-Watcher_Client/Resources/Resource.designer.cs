@@ -4431,6 +4431,9 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f0d0034
 			public const int path_password_strike_through = 2131558452;
 			
+			// aapt resource value: 0x7f0d003c
+			public const int searchRepo = 2131558460;
+			
 			// aapt resource value: 0x7f0d001b
 			public const int search_menu_title = 2131558427;
 			
