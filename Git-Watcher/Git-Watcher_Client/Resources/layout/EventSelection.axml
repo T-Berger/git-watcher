@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="Select the events yout want to get notifications:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/eventSelectionInfo" />
+    <TextView
+        android:text="GitWatcher by Webservies"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventSelectionRepo" />
+    <CheckBox
+        android:text="Commits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventSelectionCommit" />
+    <CheckBox
+        android:text="Issues"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventSelectionIssue" />
+    <CheckBox
+        android:text="Merge Requests"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventSelectionMerge" />
+    <Button
+        android:text="Back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/backButton" />
+    <Button
+        android:text="Watch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/watchButton"/>
+
+</LinearLayout>
