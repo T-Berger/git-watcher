@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using Android;
 using Android.App;
+using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
@@ -22,22 +24,54 @@ namespace Git_Watcher_Client
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
-            Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
+        }
 
+        protected override void OnStart()
+        {
+            base.OnStart();
+            bool registered = CheckIfUserRegistered().Result;
+            if (!registered)
+            {
+                InitLogin();
+            }
+            else
+            {
+                InitHome();
+            }
+        }
+
+        private void InitLogin()
+        {
+            SetContentView(Resource.Layout.LoginView);
             Button loginBtn = FindViewById<Button>(Resource.Id.loginBtn);
             loginBtn.Click += OnLoginBtnClick;
+        }
+
+        private void InitHome()
+        {
+            SetContentView(Resource.Layout.activity_main);
+
+            Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
 
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
             drawer.AddDrawerListener(toggle);
             toggle.SyncState();
-
             NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
         }
 
+        private async Task<bool> CheckIfUserRegistered()
+        {
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+
+            if (!prefs.Contains("UserLogin"))
+            {
+                return false;
+            }
+            return true;
+        }
 
 
         public override void OnBackPressed()
@@ -85,11 +119,11 @@ namespace Git_Watcher_Client
             try
             {
                 var user = await gitHubClient.User.Current();
-                //var res = await gitHubClient.GitHubApps.CreateInstallationToken(42);
-                //SaveUserData(res.Token, user.Login);
+                SaveUserData(user.Login);
                 View view = (View)sender;
                 Snackbar.Make(view, $"Authentication Successfull!! Welcome {user.Login}", Snackbar.LengthLong)
                     .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+                InitHome();
             } catch(Exception e)
             {
                 View view = (View)sender;
@@ -97,20 +131,30 @@ namespace Git_Watcher_Client
                     .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
             }
         }
-        private async void SaveUserData(string token, string username)
+
+
+        private void OnLogoutBtnClick()
         {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            IFolder folder = await rootFolder.CreateFolderAsync("UserData",
-                CreationCollisionOption.OpenIfExists);
-            IFile file = await folder.CreateFileAsync("answer.txt",
-                CreationCollisionOption.ReplaceExisting);
-            await file.WriteAllTextAsync($"user:{username};token:{token}");
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+            ISharedPreferencesEditor editor = prefs.Edit();
+            editor.Remove("UserLogin");
+            editor.Apply();
+            InitLogin();
+        }
+
+
+        private void SaveUserData(string username)
+        {
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+            ISharedPreferencesEditor editor = prefs.Edit();
+            editor.PutString("UserLogin", username);
+            editor.Apply();
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             int id = item.ItemId;
-
+            var logout = false;
             if (id == Resource.Id.nav_notification)
             {
                 // Handle the camera action
@@ -129,11 +173,14 @@ namespace Git_Watcher_Client
             }
             else if (id == Resource.Id.nav_logout)
             {
-
+                OnLogoutBtnClick();
+                logout = true;
             }
-
-            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            drawer.CloseDrawer(GravityCompat.Start);
+            if (!logout)
+            {
+                DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+                drawer.CloseDrawer(GravityCompat.Start);
+            }
             return true;
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
