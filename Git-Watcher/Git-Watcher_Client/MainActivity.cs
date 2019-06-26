@@ -121,6 +121,10 @@ namespace Git_Watcher_Client
             {
                 StartActivity(typeof(NotificationActivity));
             }
+            else if(id == Resource.Id.nav_add)
+            {
+                StartActivity(typeof(ReposSearchActivity));
+            }
             else if (id == Resource.Id.nav_myrepo)
             {
                 StartActivity(typeof(MyReposActivity));

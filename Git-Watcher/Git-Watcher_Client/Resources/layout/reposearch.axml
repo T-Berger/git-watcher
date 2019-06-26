@@ -16,21 +16,17 @@
         android:id="@+id/searchRepoInput"
         android:layout_gravity="left"/>
     <Button
-        android:text="Button"
+        android:text="Search"
+        android:onClick="OnSearchClicked"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchInputButton" />
+        android:id="@+id/searchButton" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/searchRepoList"
-        android:isScrollContainer="true" />
-    <Button
-        android:text="Cancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cancelButton" />
+        android:isScrollContainer="true"/>
 
 </LinearLayout>

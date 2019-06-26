@@ -39,13 +39,15 @@
         android:id="@+id/eventSelectionMerge" />
     <Button
         android:text="Back"
+        android:onClick="onBackClicked"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/backButton" />
+        android:id="@+id/eventBackButton" />
     <Button
         android:text="Watch"
+        android:onClick="onWatchClicked"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/watchButton"/>
+        android:id="@+id/eventWatchButton"/>
 
 </LinearLayout>
