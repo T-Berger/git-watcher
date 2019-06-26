@@ -32,11 +32,24 @@ namespace Git_Watcher.Controllers
         public ActionResult Subscribe([FromBody]Subscription sub)
         {
             _logger.LogInformation("Subscribe now");
-
             _subscriptionRepo.Save(sub);
-
             return CreatedAtAction(nameof(subscriptionsByID), new { subID = sub.Id });
         }
+
+        [HttpGet]
+        [Route("subscriptions/{subID}")]
+        public ActionResult subscriptionsByID(Guid subID)
+        {
+            var subscription = _subscriptionRepo.Get(subID);
+            if (subscription == null)
+            {
+                ModelState.AddModelError("UserError", $"SubscriptionID: {subID} not found");
+                return NotFound(ModelState);
+            }
+
+            return Ok(subscription);
+        }
+
 
         [HttpDelete]
         [Route("subscriptions/{subID}")]
@@ -56,20 +69,6 @@ namespace Git_Watcher.Controllers
         public ActionResult Subscriptions(Guid userID)
         {
             return Ok(_subscriptionRepo.GetByUser(userID).ToArray());
-        }
-
-        [HttpGet]
-        [Route("subscriptions/{subID}")]
-        public ActionResult subscriptionsByID(Guid subID)
-        {
-            var subscription = _subscriptionRepo.Get(subID);
-            if (subscription == null)
-            {
-                ModelState.AddModelError("UserError", $"SubscriptionID: {subID} not found");
-                return NotFound(ModelState);
-            }
-
-            return Ok(subscription);
         }
 
         [HttpGet]
