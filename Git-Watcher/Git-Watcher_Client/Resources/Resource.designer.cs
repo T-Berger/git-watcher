@@ -3342,8 +3342,8 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f0a006b
 			public const int action_mode_close_button = 2131361899;
 			
-			// aapt resource value: 0x7f0a00de
-			public const int action_settings = 2131362014;
+			// aapt resource value: 0x7f0a00df
+			public const int action_settings = 2131362015;
 			
 			// aapt resource value: 0x7f0a00c3
 			public const int action_text = 2131361987;
@@ -3398,6 +3398,9 @@ namespace Git_Watcher_Client
 			
 			// aapt resource value: 0x7f0a00a0
 			public const int browser_actions_menu_view = 2131361952;
+			
+			// aapt resource value: 0x7f0a00d5
+			public const int button1 = 2131362005;
 			
 			// aapt resource value: 0x7f0a0072
 			public const int buttonPanel = 2131361906;
@@ -3597,8 +3600,8 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f0a00a8
 			public const int loginBtn = 2131361960;
 			
-			// aapt resource value: 0x7f0a00d8
-			public const int masked = 2131362008;
+			// aapt resource value: 0x7f0a00d9
+			public const int masked = 2131362009;
 			
 			// aapt resource value: 0x7f0a009c
 			public const int message = 2131361948;
@@ -3627,23 +3630,23 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f0a00c0
 			public const int navImage = 2131361984;
 			
-			// aapt resource value: 0x7f0a00dc
-			public const int nav_issues = 2131362012;
-			
 			// aapt resource value: 0x7f0a00dd
-			public const int nav_logout = 2131362013;
+			public const int nav_issues = 2131362013;
+			
+			// aapt resource value: 0x7f0a00de
+			public const int nav_logout = 2131362014;
+			
+			// aapt resource value: 0x7f0a00db
+			public const int nav_myrepo = 2131362011;
 			
 			// aapt resource value: 0x7f0a00da
-			public const int nav_myrepo = 2131362010;
-			
-			// aapt resource value: 0x7f0a00d9
-			public const int nav_notification = 2131362009;
+			public const int nav_notification = 2131362010;
 			
 			// aapt resource value: 0x7f0a009e
 			public const int nav_view = 2131361950;
 			
-			// aapt resource value: 0x7f0a00db
-			public const int nav_watching = 2131362011;
+			// aapt resource value: 0x7f0a00dc
+			public const int nav_watching = 2131362012;
 			
 			// aapt resource value: 0x7f0a00af
 			public const int navigation_header_container = 2131361967;
@@ -3927,17 +3930,17 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f0a001b
 			public const int view_offset_helper = 2131361819;
 			
-			// aapt resource value: 0x7f0a00d7
-			public const int visible = 2131362007;
+			// aapt resource value: 0x7f0a00d8
+			public const int visible = 2131362008;
 			
 			// aapt resource value: 0x7f0a00bb
 			public const int watchButton = 2131361979;
 			
-			// aapt resource value: 0x7f0a00d5
-			public const int watchingHeader = 2131362005;
-			
 			// aapt resource value: 0x7f0a00d6
-			public const int watchingList = 2131362006;
+			public const int watchingHeader = 2131362006;
+			
+			// aapt resource value: 0x7f0a00d7
+			public const int watchingList = 2131362007;
 			
 			// aapt resource value: 0x7f0a0043
 			public const int withText = 2131361859;

@@ -3,7 +3,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-       
+    <Button
+        android:text="Add new Repository"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1" />
     <TextView
         android:text="Watching Repositories:"
         android:textAppearance="?android:attr/textAppearanceMedium"
