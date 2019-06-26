@@ -28,46 +28,12 @@ namespace Git_Watcher.Controllers
         }
 
         [HttpPost]
-        [Route("subscribe")]
-        public ActionResult Subscribe(Guid userID, Guid repoID)
+        [Route("subscriptions")]
+        public ActionResult Subscribe([FromBody]Subscription sub)
         {
             _logger.LogInformation("Subscribe now");
-            if (_userRepo.Get(userID) == null)
-            {
-                ModelState.AddModelError("UserError", $"UserID: {userID} not found");
-                return BadRequest(ModelState);
-            }
-
-            if (_gitRepo.Get(repoID) == null)
-            {
-                ModelState.AddModelError("GitRepositoryError", $"GitRepositoryID: {repoID} not found");
-                return BadRequest(ModelState);
-            }
-
-            var newSubscription = new Subscription() { UserId = userID, RepoId = repoID };
-            _subscriptionRepo.Save(newSubscription);
-
-            return CreatedAtAction(nameof(subscriptionsByID), new { subID = newSubscription.Id });
-        }
-
-        [HttpDelete]
-        [Route("unsubscribe")]
-        public ActionResult Unsubscribe(Guid subID)
-        {
-            if (_subscriptionRepo.Get(subID) == null)
-            {
-                ModelState.AddModelError("SubscriptionError", $"SubscriptionID: {subID} not found");
-                return NotFound(ModelState);
-            }
-            _subscriptionRepo.Delete(subID);
-            return Ok();
-        }
-
-        [HttpGet]
-        [Route("subscriptions")]
-        public ActionResult Subscriptions(Guid userID)
-        {
-            return Ok(_subscriptionRepo.GetByUser(userID).ToArray());
+            _subscriptionRepo.Save(sub);
+            return CreatedAtAction(nameof(subscriptionsByID), new { subID = sub.Id });
         }
 
         [HttpGet]
@@ -82,6 +48,27 @@ namespace Git_Watcher.Controllers
             }
 
             return Ok(subscription);
+        }
+
+
+        [HttpDelete]
+        [Route("subscriptions/{subID}")]
+        public ActionResult Unsubscribe(Guid subID)
+        {
+            if (_subscriptionRepo.Get(subID) == null)
+            {
+                ModelState.AddModelError("SubscriptionError", $"SubscriptionID: {subID} not found");
+                return NotFound(ModelState);
+            }
+            _subscriptionRepo.Delete(subID);
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("subscriptions/byUser/{userID}")]
+        public ActionResult Subscriptions(Guid userID)
+        {
+            return Ok(_subscriptionRepo.GetByUser(userID).ToArray());
         }
 
         [HttpGet]

@@ -27,41 +27,16 @@ namespace Git_Watcher.Controllers
         }
 
         [HttpPost]
-        [Route("createUser")]
-        public ActionResult CreateUser(NewBackendUser newUser)
+        [Route("users")]
+        public ActionResult CreateUser([FromBody]User user)
         {
-            try
-            {
-                if (newUser.Key != clientInitKey)
-                {
-                    ModelState.AddModelError("ClientError", "Clientkey not recognized!");
-                    return BadRequest(ModelState);
-                }
-                if (newUser.UserName.Length > 39)
-                {
-                    ModelState.AddModelError("UserError", "User name cannot be longer than 39 characters!");
-                    return BadRequest(ModelState);
-                }
-                if (_userRepo.Get(newUser.UserName) != null)
-                {
-                    ModelState.AddModelError("UserError", $"User: {newUser.UserName} already exists!");
-                    return BadRequest(ModelState);
-                }
-                var u = new User { GitUserName = newUser.UserName };
-
-                _userRepo.Save(u);
-                return CreatedAtAction(nameof(CreateUser), new { key = u.ApiKey });
-
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e.Message);
-                return BadRequest(e);
-            }
+            _logger.LogInformation("Hello there");
+            _userRepo.Save(user);
+            return CreatedAtAction(nameof(GetUser), new { id = user.Id });
         }
 
         [HttpGet]
-        [Route("getUser")]
+        [Route("users/{id}")]
         public ActionResult GetUser(Guid id)
         {
             var user = _userRepo.Get(id);
@@ -71,7 +46,7 @@ namespace Git_Watcher.Controllers
         }
 
         [HttpDelete]
-        [Route("deleteUser")]
+        [Route("users/{id}")]
         public ActionResult DeleteUser(Guid id)
         {
             _userRepo.Delete(id);
