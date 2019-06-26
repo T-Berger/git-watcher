@@ -46,6 +46,8 @@ namespace Git_Watcher
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IGitRepo, GitRepo>();
             services.AddScoped<ISubscriptionRepo, SubscriptionRepo>();
+            services.AddTransient<IValidator<User>, UserValidator>();
+            services.AddTransient<IValidator<GitRepository>, GitRepositoryValidator>();
 
             services.AddSwaggerGen(c =>
             {
