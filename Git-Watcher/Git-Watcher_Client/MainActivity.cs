@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Android;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -111,29 +112,31 @@ namespace Git_Watcher_Client
         {
             int id = item.ItemId;
 
+            item.SetChecked(true);
+            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            //drawer.CloseDrawer(GravityCompat.Start);
+            drawer.CloseDrawers();
+
             if (id == Resource.Id.nav_notification)
             {
-                // Handle the camera action
+                SetContentView(Resource.Layout.notifications);
             }
             else if (id == Resource.Id.nav_myrepo)
             {
-
+                SetContentView(Resource.Layout.my_repos);
             }
             else if (id == Resource.Id.nav_watching)
             {
-
+                SetContentView(Resource.Layout.watching_repos);
             }
             else if (id == Resource.Id.nav_issues)
             {
-
+                SetContentView(Resource.Layout.issues);
             }
             else if (id == Resource.Id.nav_logout)
             {
 
             }
-
-            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            drawer.CloseDrawer(GravityCompat.Start);
             return true;
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
