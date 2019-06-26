@@ -119,19 +119,19 @@ namespace Git_Watcher_Client
 
             if (id == Resource.Id.nav_notification)
             {
-                SetContentView(Resource.Layout.notifications);
+                StartActivity(typeof(NotificationActivity));
             }
             else if (id == Resource.Id.nav_myrepo)
             {
-                SetContentView(Resource.Layout.my_repos);
+                StartActivity(typeof(MyReposActivity));
             }
             else if (id == Resource.Id.nav_watching)
             {
-                SetContentView(Resource.Layout.watching_repos);
+                StartActivity(typeof(WatchingActivity));
             }
             else if (id == Resource.Id.nav_issues)
             {
-                SetContentView(Resource.Layout.issues);
+                StartActivity(typeof(IssueActivity));
             }
             else if (id == Resource.Id.nav_logout)
             {
