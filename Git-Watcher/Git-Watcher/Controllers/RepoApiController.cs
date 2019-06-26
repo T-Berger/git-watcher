@@ -28,11 +28,10 @@ namespace Git_Watcher.Controllers
         }
 
         [HttpPost]
-        [Route("subscribe")]
+        [Route("subscriptions")]
         public ActionResult Subscribe([FromBody]Subscription sub)
         {
             _logger.LogInformation("Subscribe now");
-            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             _subscriptionRepo.Save(sub);
 
@@ -40,7 +39,7 @@ namespace Git_Watcher.Controllers
         }
 
         [HttpDelete]
-        [Route("unsubscribe")]
+        [Route("subscriptions/{subID}")]
         public ActionResult Unsubscribe(Guid subID)
         {
             if (_subscriptionRepo.Get(subID) == null)
@@ -53,7 +52,7 @@ namespace Git_Watcher.Controllers
         }
 
         [HttpGet]
-        [Route("subscriptions")]
+        [Route("subscriptions/byUser/{userID}")]
         public ActionResult Subscriptions(Guid userID)
         {
             return Ok(_subscriptionRepo.GetByUser(userID).ToArray());

@@ -24,8 +24,8 @@ namespace Git_Watcher.Controllers
         }
 
         [HttpPost]
-        [Route("createUser")]
-        public ActionResult CreateUser(string name)
+        [Route("users")]
+        public ActionResult CreateUser([FromBody]User user)
         {
             _logger.LogInformation("Hello there");
             _userRepo.Save(user);
@@ -33,7 +33,7 @@ namespace Git_Watcher.Controllers
         }
 
         [HttpGet]
-        [Route("getUser")]
+        [Route("users/{id}")]
         public ActionResult GetUser(Guid id)
         {
             var user = _userRepo.Get(id);
@@ -43,7 +43,7 @@ namespace Git_Watcher.Controllers
         }
 
         [HttpDelete]
-        [Route("deleteUser")]
+        [Route("users/{id}")]
         public ActionResult DeleteUser(Guid id)
         {
             _userRepo.Delete(id);
