@@ -19,7 +19,7 @@ namespace Git_Watcher.DataAccess.Repositories
 
         public GitRepo(DataContext context)
         {
-            context = _context;
+            _context = context;
         }
 
         public void Delete(Guid id)
