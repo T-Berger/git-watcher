@@ -71,7 +71,6 @@
     <Compile Include="WatchingActivity.cs" />
     <Compile Include="RepoSearchActivity.cs" />
     <Compile Include="NotificationActivity.cs" />
-    <Compile Include="Models\Issue.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
