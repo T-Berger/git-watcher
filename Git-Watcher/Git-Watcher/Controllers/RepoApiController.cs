@@ -29,25 +29,14 @@ namespace Git_Watcher.Controllers
 
         [HttpPost]
         [Route("subscribe")]
-        public ActionResult Subscribe(Guid userID, Guid repoID)
+        public ActionResult Subscribe([FromBody]Subscription sub)
         {
             _logger.LogInformation("Subscribe now");
-            if (_userRepo.Get(userID) == null)
-            {
-                ModelState.AddModelError("UserError", $"UserID: {userID} not found");
-                return BadRequest(ModelState);
-            }
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (_gitRepo.Get(repoID) == null)
-            {
-                ModelState.AddModelError("GitRepositoryError", $"GitRepositoryID: {repoID} not found");
-                return BadRequest(ModelState);
-            }
+            _subscriptionRepo.Save(sub);
 
-            var newSubscription = new Subscription() { UserId = userID, RepoId = repoID };
-            _subscriptionRepo.Save(newSubscription);
-
-            return CreatedAtAction(nameof(subscriptionsByID), new { subID = newSubscription.Id });
+            return CreatedAtAction(nameof(subscriptionsByID), new { subID = sub.Id });
         }
 
         [HttpDelete]
