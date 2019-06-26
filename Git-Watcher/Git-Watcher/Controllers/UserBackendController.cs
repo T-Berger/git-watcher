@@ -28,19 +28,8 @@ namespace Git_Watcher.Controllers
         public ActionResult CreateUser(string name)
         {
             _logger.LogInformation("Hello there");
-            if (name.Length > 39)
-            {
-                ModelState.AddModelError("UserError", "User name cannot be longer than 39 characters!");
-                return BadRequest(ModelState);
-            }
-            if (_userRepo.Get(name) != null)
-            {
-                ModelState.AddModelError("UserError", $"User: {name} already exists!");
-                return BadRequest(ModelState);
-            }
-            var u = new User { GitUserName = name };
-            _userRepo.Save(u);
-            return CreatedAtAction(nameof(CreateUser), new { key = u.ApiKey });
+            _userRepo.Save(user);
+            return CreatedAtAction(nameof(GetUser), new { id = user.Id });
         }
 
         [HttpGet]
