@@ -34,3 +34,4 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+/Git-Watcher/Git-Watcher/Properties/PublishProfiles

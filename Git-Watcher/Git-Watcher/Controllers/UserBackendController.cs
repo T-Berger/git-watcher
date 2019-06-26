@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Git_Watcher.DataAccess.Repositories;
 using Git_Watcher.Models;
+using GitWatcher.ApiModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,6 +17,8 @@ namespace Git_Watcher.Controllers
     {
         private readonly ILogger _logger;
         private readonly IUserRepo _userRepo;
+        private readonly Guid clientInitKey = new Guid("5A3DA496-4120-4169-8373-339EEBA02B64");
+
 
         public UserBackendController(ILogger<UserBackendController> logger, IUserRepo userRepo)
         {

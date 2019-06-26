@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29001.49
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Git-Watcher", "Git-Watcher\Git-Watcher.csproj", "{FF7599E4-5DF2-4E01-8546-665057EF4EB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git-Watcher_Client", "Git-Watcher_Client\Git-Watcher_Client.csproj", "{4879D371-DC97-48E1-839B-A4635992BBB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWatcher.ApiModels", "GitWatcher.ApiModels\GitWatcher.ApiModels.csproj", "{7E732516-C7FD-49B0-BAE0-A93E4B7C127A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{4879D371-DC97-48E1-839B-A4635992BBB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4879D371-DC97-48E1-839B-A4635992BBB0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4879D371-DC97-48E1-839B-A4635992BBB0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7E732516-C7FD-49B0-BAE0-A93E4B7C127A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E732516-C7FD-49B0-BAE0-A93E4B7C127A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E732516-C7FD-49B0-BAE0-A93E4B7C127A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E732516-C7FD-49B0-BAE0-A93E4B7C127A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
