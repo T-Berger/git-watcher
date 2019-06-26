@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Git_Watcher.Models;
 using Git_Watcher.DataAccess.Repositories;
+using Git_Watcher_Client.Models;
 
 namespace Git_Watcher.Controllers
 {
@@ -76,6 +77,34 @@ namespace Git_Watcher.Controllers
         public ActionResult News()
         {
             return Ok("not implemented yet");
+        }
+
+        [HttpGet]
+        [Route("issues/byUser/{userID}")]
+        public ActionResult Issues(Guid userID)
+        {
+            List<Subscription> subs = _subscriptionRepo.GetByUser(userID);
+
+            if(subs.Count == 0)
+            {
+                return BadRequest("No Issues for user");
+            }
+
+            List<Issue> issues = new List<Issue>();
+
+            subs.ForEach((Subscription sub) =>
+            {
+                Guid repo = sub.RepoId;
+                //Guid owner = sub.OwnerId;
+
+                //Get all issues from GithubApi
+
+                //get only needed data
+
+                //issues.Add(new Issue(bla, bla, bla));
+            });
+
+            return Ok(issues.ToArray());
         }
     }
 }
