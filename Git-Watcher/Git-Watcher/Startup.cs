@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Git_Watcher.Validation;
+using Git_Watcher.Models;
 using Git_Watcher.DataAccess;
 using Git_Watcher.DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -15,6 +17,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using FluentValidation.AspNetCore;
+using FluentValidation;
 using Serilog;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -36,8 +40,8 @@ namespace Git_Watcher
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             var connection = @"Server=localhost\sqlexpress;Database=gitwatcher;Integrated Security=True;";
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddFluentValidation();
             services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IGitRepo, GitRepo>();
