@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/app_bar_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.design.widget.TextInputEditText
@@ -12,21 +16,17 @@
         android:id="@+id/searchRepoInput"
         android:layout_gravity="left"/>
     <Button
-        android:text="Button"
+        android:text="Search"
+        android:onClick="OnSearchClicked"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchInputButton" />
+        android:id="@+id/searchButton" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchRepoResult"
-        android:isScrollContainer="true" />
-    <Button
-        android:text="Cancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cancelButton" />
+        android:id="@+id/searchRepoList"
+        android:isScrollContainer="true"/>
 
 </LinearLayout>

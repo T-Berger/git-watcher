@@ -2502,17 +2502,23 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f09005a
 			public const int action_bar_subtitle = 2131296346;
 			
+			// aapt resource value: 0x7f0a00c1
+			public const int action_container = 2131361985;
 			// aapt resource value: 0x7f090059
 			public const int action_bar_title = 2131296345;
 			
 			// aapt resource value: 0x7f0900a7
 			public const int action_container = 2131296423;
 			
+			// aapt resource value: 0x7f0a00cc
+			public const int action_divider = 2131361996;
 			// aapt resource value: 0x7f09007c
 			public const int action_context_bar = 2131296380;
 			
 			// aapt resource value: 0x7f0900ae
 			public const int action_divider = 2131296430;
+			// aapt resource value: 0x7f0a00c2
+			public const int action_image = 2131361986;
 			
 			// aapt resource value: 0x7f0900a8
 			public const int action_image = 2131296424;
@@ -2531,12 +2537,18 @@ namespace Git_Watcher_Client
 			
 			// aapt resource value: 0x7f09005b
 			public const int action_mode_close_button = 2131296347;
+			// aapt resource value: 0x7f0a00de
+			public const int action_settings = 2131362014;
 			
 			// aapt resource value: 0x7f0900c6
 			public const int action_settings = 2131296454;
+			// aapt resource value: 0x7f0a00c3
+			public const int action_text = 2131361987;
 			
 			// aapt resource value: 0x7f0900a9
 			public const int action_text = 2131296425;
+			// aapt resource value: 0x7f0a00cd
+			public const int actions = 2131361997;
 			
 			// aapt resource value: 0x7f0900b7
 			public const int actions = 2131296439;
@@ -2564,6 +2576,8 @@ namespace Git_Watcher_Client
 			
 			// aapt resource value: 0x7f0900a0
 			public const int backButton = 2131296416;
+			// aapt resource value: 0x7f0a0036
+			public const int beginning = 2131361846;
 			
 			// aapt resource value: 0x7f09002e
 			public const int beginning = 2131296302;
@@ -2594,6 +2608,8 @@ namespace Git_Watcher_Client
 			
 			// aapt resource value: 0x7f090072
 			public const int checkbox = 2131296370;
+			// aapt resource value: 0x7f0a004c
+			public const int center = 2131361868;
 			
 			// aapt resource value: 0x7f0900b3
 			public const int chronometer = 2131296435;
@@ -2604,6 +2620,8 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f09004e
 			public const int clip_vertical = 2131296334;
 			
+			// aapt resource value: 0x7f0a00cb
+			public const int chronometer = 2131361995;
 			// aapt resource value: 0x7f090038
 			public const int collapseActionView = 2131296312;
 			
@@ -2676,8 +2694,11 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f09009e
 			public const int eventSelectionIssue = 2131296414;
 			
-			// aapt resource value: 0x7f09009f
-			public const int eventSelectionMerge = 2131296415;
+			// aapt resource value: 0x7f0a00ba
+			public const int eventBackButton = 2131361978;
+			
+			// aapt resource value: 0x7f0a00b7
+			public const int eventSelectionCommit = 2131361975;
 			
 			// aapt resource value: 0x7f09009c
 			public const int eventSelectionRepo = 2131296412;
@@ -2691,8 +2712,11 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f090071
 			public const int expanded_menu = 2131296369;
 			
-			// aapt resource value: 0x7f09004f
-			public const int fill = 2131296335;
+			// aapt resource value: 0x7f0a00bb
+			public const int eventWatchButton = 2131361979;
+			
+			// aapt resource value: 0x7f0a0048
+			public const int exitUntilCollapsed = 2131361864;
 			
 			// aapt resource value: 0x7f090050
 			public const int fill_horizontal = 2131296336;
@@ -2738,6 +2762,8 @@ namespace Git_Watcher_Client
 			
 			// aapt resource value: 0x7f090000
 			public const int item_touch_helper_previous_elevation = 2131296256;
+			// aapt resource value: 0x7f0a00ce
+			public const int icon_group = 2131361998;
 			
 			// aapt resource value: 0x7f09008e
 			public const int largeLabel = 2131296398;
@@ -2745,11 +2771,16 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f090048
 			public const int left = 2131296328;
 			
+			// aapt resource value: 0x7f0a00c7
+			public const int info = 2131361991;
+			
+			// aapt resource value: 0x7f0a00bc
+			public const int issuesHeader = 2131361980;
 			// aapt resource value: 0x7f090017
 			public const int line1 = 2131296279;
 			
-			// aapt resource value: 0x7f090018
-			public const int line3 = 2131296280;
+			// aapt resource value: 0x7f0a0068
+			public const int italic = 2131361896;
 			
 			// aapt resource value: 0x7f09001c
 			public const int listMode = 2131296284;
@@ -2778,6 +2809,8 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f090026
 			public const int multiply = 2131296294;
 			
+			// aapt resource value: 0x7f0a00d7
+			public const int masked = 2131362007;
 			// aapt resource value: 0x7f0900a6
 			public const int navImage = 2131296422;
 			
@@ -2799,26 +2832,35 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f0900c3
 			public const int nav_watching = 2131296451;
 			
-			// aapt resource value: 0x7f090095
-			public const int navigation_header_container = 2131296405;
+			// aapt resource value: 0x7f0a00be
+			public const int myRepoHeader = 2131361982;
 			
-			// aapt resource value: 0x7f09003a
-			public const int never = 2131296314;
+			// aapt resource value: 0x7f0a00bf
+			public const int myRepoList = 2131361983;
 			
-			// aapt resource value: 0x7f090021
-			public const int none = 2131296289;
+			// aapt resource value: 0x7f0a00c0
+			public const int navImage = 2131361984;
 			
-			// aapt resource value: 0x7f09001d
-			public const int normal = 2131296285;
+			// aapt resource value: 0x7f0a00d8
+			public const int nav_add = 2131362008;
 			
-			// aapt resource value: 0x7f0900b6
-			public const int notification_background = 2131296438;
+			// aapt resource value: 0x7f0a00dc
+			public const int nav_issues = 2131362012;
+			
+			// aapt resource value: 0x7f0a00dd
+			public const int nav_logout = 2131362013;
+			
+			// aapt resource value: 0x7f0a00da
+			public const int nav_myrepo = 2131362010;
+			
+			// aapt resource value: 0x7f0a00d9
+			public const int nav_notification = 2131362009;
 			
 			// aapt resource value: 0x7f0900b0
 			public const int notification_main_column = 2131296432;
 			
-			// aapt resource value: 0x7f0900af
-			public const int notification_main_column_container = 2131296431;
+			// aapt resource value: 0x7f0a00db
+			public const int nav_watching = 2131362011;
 			
 			// aapt resource value: 0x7f09004b
 			public const int parallax = 2131296331;
@@ -2832,17 +2874,23 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f0900a4
 			public const int passwordTxt = 2131296420;
 			
-			// aapt resource value: 0x7f09004c
-			public const int pin = 2131296332;
+			// aapt resource value: 0x7f0a00cf
+			public const int notificationHeader = 2131361999;
 			
-			// aapt resource value: 0x7f090006
-			public const int progress_circular = 2131296262;
+			// aapt resource value: 0x7f0a00d0
+			public const int notificationList = 2131362000;
 			
-			// aapt resource value: 0x7f090007
-			public const int progress_horizontal = 2131296263;
+			// aapt resource value: 0x7f0a00c9
+			public const int notification_background = 2131361993;
 			
-			// aapt resource value: 0x7f090074
-			public const int radio = 2131296372;
+			// aapt resource value: 0x7f0a00c5
+			public const int notification_main_column = 2131361989;
+			
+			// aapt resource value: 0x7f0a00c4
+			public const int notification_main_column_container = 2131361988;
+			
+			// aapt resource value: 0x7f0a0060
+			public const int outline = 2131361888;
 			
 			// aapt resource value: 0x7f090049
 			public const int right = 2131296329;
@@ -2871,11 +2919,11 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f09006a
 			public const int scrollIndicatorDown = 2131296362;
 			
-			// aapt resource value: 0x7f090066
-			public const int scrollIndicatorUp = 2131296358;
+			// aapt resource value: 0x7f0a00c8
+			public const int right_icon = 2131361992;
 			
-			// aapt resource value: 0x7f090067
-			public const int scrollView = 2131296359;
+			// aapt resource value: 0x7f0a00c6
+			public const int right_side = 2131361990;
 			
 			// aapt resource value: 0x7f090054
 			public const int scrollable = 2131296340;
@@ -2904,14 +2952,14 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f090081
 			public const int search_edit_frame = 2131296385;
 			
-			// aapt resource value: 0x7f090087
-			public const int search_go_btn = 2131296391;
+			// aapt resource value: 0x7f0a00d2
+			public const int searchButton = 2131362002;
 			
-			// aapt resource value: 0x7f090082
-			public const int search_mag_icon = 2131296386;
+			// aapt resource value: 0x7f0a00d1
+			public const int searchRepoInput = 2131362001;
 			
-			// aapt resource value: 0x7f090083
-			public const int search_plate = 2131296387;
+			// aapt resource value: 0x7f0a00d3
+			public const int searchRepoList = 2131362003;
 			
 			// aapt resource value: 0x7f090084
 			public const int search_src_text = 2131296388;
@@ -3042,8 +3090,8 @@ namespace Git_Watcher_Client
 			// aapt resource value: 0x7f090009
 			public const int up = 2131296265;
 			
-			// aapt resource value: 0x7f090025
-			public const int useLogo = 2131296293;
+			// aapt resource value: 0x7f0a00ca
+			public const int time = 2131361994;
 			
 			// aapt resource value: 0x7f090016
 			public const int view_offset_helper = 2131296278;
@@ -3059,6 +3107,57 @@ namespace Git_Watcher_Client
 			
 			// aapt resource value: 0x7f09002d
 			public const int wrap_content = 2131296301;
+			
+			// aapt resource value: 0x7f0a007d
+			public const int topPanel = 2131361917;
+			
+			// aapt resource value: 0x7f0a00ad
+			public const int touch_outside = 2131361965;
+			
+			// aapt resource value: 0x7f0a000f
+			public const int transition_current_scene = 2131361807;
+			
+			// aapt resource value: 0x7f0a0010
+			public const int transition_layout_save = 2131361808;
+			
+			// aapt resource value: 0x7f0a0011
+			public const int transition_position = 2131361809;
+			
+			// aapt resource value: 0x7f0a0012
+			public const int transition_scene_layoutid_cache = 2131361810;
+			
+			// aapt resource value: 0x7f0a0013
+			public const int transition_transform = 2131361811;
+			
+			// aapt resource value: 0x7f0a0034
+			public const int uniform = 2131361844;
+			
+			// aapt resource value: 0x7f0a0050
+			public const int unlabeled = 2131361872;
+			
+			// aapt resource value: 0x7f0a0009
+			public const int up = 2131361801;
+			
+			// aapt resource value: 0x7f0a002d
+			public const int useLogo = 2131361837;
+			
+			// aapt resource value: 0x7f0a001b
+			public const int view_offset_helper = 2131361819;
+			
+			// aapt resource value: 0x7f0a00d6
+			public const int visible = 2131362006;
+			
+			// aapt resource value: 0x7f0a00d4
+			public const int watchingHeader = 2131362004;
+			
+			// aapt resource value: 0x7f0a00d5
+			public const int watchingList = 2131362005;
+			
+			// aapt resource value: 0x7f0a0043
+			public const int withText = 2131361859;
+			
+			// aapt resource value: 0x7f0a0035
+			public const int wrap_content = 2131361845;
 			
 			static Id()
 			{
@@ -3258,28 +3357,28 @@ namespace Git_Watcher_Client
 			public const int nav_header_main = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int notification_action = 2130968623;
+			public const int event_selection = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int notification_action_tombstone = 2130968624;
+			public const int issues = 2130968624;
 			
 			// aapt resource value: 0x7f040031
-			public const int notification_media_action = 2130968625;
+			public const int mtrl_layout_snackbar = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int notification_media_cancel_action = 2130968626;
+			public const int mtrl_layout_snackbar_include = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int notification_template_big_media = 2130968627;
+			public const int my_repos = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int notification_template_big_media_custom = 2130968628;
+			public const int nav_header_main = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int notification_template_big_media_narrow = 2130968629;
+			public const int notification_action = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int notification_template_big_media_narrow_custom = 2130968630;
+			public const int notification_action_tombstone = 2130968630;
 			
 			// aapt resource value: 0x7f040037
 			public const int notification_template_custom_big = 2130968631;
@@ -3288,19 +3387,31 @@ namespace Git_Watcher_Client
 			public const int notification_template_icon_group = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int notification_template_lines_media = 2130968633;
+			public const int notification_template_part_chronometer = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int notification_template_media = 2130968634;
+			public const int notification_template_part_time = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int notification_template_media_custom = 2130968635;
+			public const int notifications = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int notification_template_part_chronometer = 2130968636;
+			public const int reposearch = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int notification_template_part_time = 2130968637;
+			public const int select_dialog_item_material = 2130968637;
+			
+			// aapt resource value: 0x7f04003e
+			public const int select_dialog_multichoice_material = 2130968638;
+			
+			// aapt resource value: 0x7f04003f
+			public const int select_dialog_singlechoice_material = 2130968639;
+			
+			// aapt resource value: 0x7f040040
+			public const int support_simple_spinner_dropdown_item = 2130968640;
+			
+			// aapt resource value: 0x7f040041
+			public const int watching_repos = 2130968641;
 			
 			// aapt resource value: 0x7f04003e
 			public const int SearchRepo = 2130968638;

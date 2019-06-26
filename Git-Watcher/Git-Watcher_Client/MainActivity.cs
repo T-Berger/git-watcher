@@ -167,22 +167,32 @@ namespace Git_Watcher_Client
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             int id = item.ItemId;
+
+            item.SetChecked(true);
+            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            //drawer.CloseDrawer(GravityCompat.Start);
+            drawer.CloseDrawers();
+
             var logout = false;
             if (id == Resource.Id.nav_notification)
             {
-                // Handle the camera action
+                StartActivity(typeof(NotificationActivity));
+            }
+            else if(id == Resource.Id.nav_add)
+            {
+                StartActivity(typeof(ReposSearchActivity));
             }
             else if (id == Resource.Id.nav_myrepo)
             {
-
+                StartActivity(typeof(MyReposActivity));
             }
             else if (id == Resource.Id.nav_watching)
             {
-
+                StartActivity(typeof(WatchingActivity));
             }
             else if (id == Resource.Id.nav_issues)
             {
-
+                StartActivity(typeof(IssueActivity));
             }
             else if (id == Resource.Id.nav_logout)
             {
