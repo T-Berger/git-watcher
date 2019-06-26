@@ -40,9 +40,8 @@ namespace Git_Watcher
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("gitwatcher")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddFluentValidation();
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("gitwatcher")));
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IGitRepo, GitRepo>();
             services.AddScoped<ISubscriptionRepo, SubscriptionRepo>();
