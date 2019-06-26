@@ -29,4 +29,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="4.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GitWatcher.ApiModels\GitWatcher.ApiModels.csproj" />
+  </ItemGroup>
+
 </Project>

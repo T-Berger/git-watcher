@@ -12,6 +12,7 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using Git_Watcher_Client.ApiCaller;
 using Octokit;
 using PCLStorage;
 
@@ -66,7 +67,7 @@ namespace Git_Watcher_Client
         {
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 
-            if (!prefs.Contains("UserLogin"))
+            if (!prefs.Contains("ApiKey"))
             {
                 return false;
             }
@@ -119,11 +120,23 @@ namespace Git_Watcher_Client
             try
             {
                 var user = await gitHubClient.User.Current();
-                SaveUserData(user.Login);
-                View view = (View)sender;
-                Snackbar.Make(view, $"Authentication Successfull!! Welcome {user.Login}", Snackbar.LengthLong)
-                    .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
-                InitHome();
+                if (user != null)
+                {
+                    WatcherBackendCalls wbc = new WatcherBackendCalls(this);
+                    var res = await wbc.CreateUser(user.Login);
+                    if (res)
+                    {
+                        View view = (View)sender;
+                        Snackbar.Make(view, $"Authentication Successfull!! Welcome {user.Login}", Snackbar.LengthLong)
+                            .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+                        SaveUserData(user.Login);
+                        InitHome();
+                    }
+                    else
+                        return;
+                }
+                else
+                    return;
             } catch(Exception e)
             {
                 View view = (View)sender;

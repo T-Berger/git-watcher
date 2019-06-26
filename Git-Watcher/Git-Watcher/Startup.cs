@@ -37,8 +37,7 @@ namespace Git_Watcher
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            var connection = @"Server=localhost\sqlexpress;Database=gitwatcher;Integrated Security=True;";
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("gitwatcher")));
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IGitRepo, GitRepo>();
             services.AddScoped<ISubscriptionRepo, SubscriptionRepo>();
@@ -56,6 +55,11 @@ namespace Git_Watcher
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
         {
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
+                context.Database.Migrate();
+            }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
