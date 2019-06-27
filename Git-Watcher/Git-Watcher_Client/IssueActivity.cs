@@ -35,10 +35,10 @@ namespace Git_Watcher_Client
             List<Resource.String> list = new List<Resource.String>();
             for (int i = 0; i < 10; i++)
             {
-                list.Add("Item_0" + i);
+                //list.Add("Item_0" + i);
             }
 
-            _list.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, list);
+            //_list.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, list);
         }
         private void makeApiCall()
         {
