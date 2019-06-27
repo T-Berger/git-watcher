@@ -31,8 +31,10 @@ namespace Git_Watcher_Client
             
             TextView text = FindViewById<TextView>(Resource.Id.eventSelectionRepo);
             text.Text = _repo;
-            
-            
+
+            CheckBox commitBtn = FindViewById<CheckBox>(Resource.Id.eventSelectionCommit);
+            commitBtn.Activated = true;
+
             Button back = FindViewById<Button>(Resource.Id.eventBackButton);
             Button watch = FindViewById<Button>(Resource.Id.eventWatchButton);
 
@@ -47,17 +49,7 @@ namespace Git_Watcher_Client
 
         public async void onWatchClicked(object sender, EventArgs eventArgs)
         {
-            CheckBox commitBtn = FindViewById<CheckBox>(Resource.Id.eventSelectionCommit);
-            bool trackCommit = commitBtn.Checked;
-
-            CheckBox mergeBtn = FindViewById<CheckBox>(Resource.Id.eventSelectionMerge);
-            bool trackMerges = mergeBtn.Checked;
-
-            CheckBox issueBtn = FindViewById<CheckBox>(Resource.Id.eventSelectionIssue);
-            bool trackIssues = issueBtn.Checked;
-
-            bool res = await callApi(trackIssues, trackCommit, trackMerges);
-
+            bool res = await callApi();
             if(res)
             {
                 StartActivity(typeof(MainActivity));
@@ -73,7 +65,7 @@ namespace Git_Watcher_Client
             StartActivity(typeof(MainActivity));
         }
 
-        private async Task<bool> callApi(bool issue, bool commit, bool merge)
+        private async Task<bool> callApi()
         {
             //TODO: get Repo name
             WatcherBackendCalls caller = new WatcherBackendCalls(this);
