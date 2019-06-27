@@ -3,6 +3,8 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Git_Watcher_Client.Dto;
 
 namespace Git_Watcher_Client
 {
@@ -10,6 +12,7 @@ namespace Git_Watcher_Client
     public class MyReposActivity : AppCompatActivity
     {
         ListView _list;
+        List<RepositoryDto> _items;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -18,9 +21,9 @@ namespace Git_Watcher_Client
 
             _list = FindViewById<ListView>(Resource.Id.myRepoList);
 
-            makeApiCall();
-
-            fillList();
+            // Give Repos
+            long[] repoIds = new long[]{154739983, 154739983};
+            makeApiCall(repoIds);
         }
 
         public override void OnBackPressed()
@@ -28,19 +31,19 @@ namespace Git_Watcher_Client
             StartActivity(typeof(MainActivity));
         }
 
-        private void fillList()
+        
+        private async void makeApiCall(long[] repoIds)
         {
-            List<string> list = new List<string>();
-            for (int i = 0; i < 10; i++)
+            var gitHubRestService = new GitHubRestService();
+            
+            _items = new List<RepositoryDto>();
+            foreach (var id in repoIds)
             {
-                list.Add("Item_0" + i);
+                var item = gitHubRestService.Repository.Get(id);
+                _items.Add(item.Result);
             }
 
-            _list.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, list);
-        }
-        private void makeApiCall()
-        {
-
+            _list.Adapter = new ArrayAdapter<RepositoryDto>(this, Android.Resource.Layout.SimpleListItem1, _items);
         }
     }
 }

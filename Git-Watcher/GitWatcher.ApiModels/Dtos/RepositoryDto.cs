@@ -243,5 +243,10 @@ namespace Git_Watcher_Client.Dto
         [JsonProperty("default_branch")] public string DefaultBranch { get; set; }
 
         [JsonProperty("score")] public double Score { get; set; }
+        
+        public override string ToString()
+        {
+            return "Title:" + Name + "\n Id:" + Id + "\n Von:" + Owner.Login +"\n Beschreibung:" + Description ;
+        }
     }
 }
