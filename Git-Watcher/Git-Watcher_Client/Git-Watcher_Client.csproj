@@ -188,6 +188,10 @@
       <Project>{7e732516-c7fd-49b0-bae0-a93e4b7c127a}</Project>
       <Name>GitWatcher.ApiModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GitWatcher.GitHubService\GitWatcher.GitHubService.csproj">
+      <Project>{a3333269-d706-4ef6-b6de-1cc1ccb3b6a1}</Project>
+      <Name>GitWatcher.GitHubService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

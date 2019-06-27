@@ -15,7 +15,7 @@ namespace Git_Watcher.Models
 
         [Required]
         [StringLength(100)] // Max length Git
-        public string Name { get; set; }
+        public string RepoId { get; set; }
 
         [Required]
         public string Link { get; set; }

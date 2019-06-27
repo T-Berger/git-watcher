@@ -10,8 +10,8 @@ namespace GitWatcher.ApiModels
         public override string ToString()
         {
             return "{" +
-                    $"UserName:{UserName}," +
-                    $"Key:{Key.ToString()}" +
+                    $"UserName:\"{UserName}\"," +
+                    $"Key:\"{Key.ToString()}\"" +
                 "}";
         }
     }

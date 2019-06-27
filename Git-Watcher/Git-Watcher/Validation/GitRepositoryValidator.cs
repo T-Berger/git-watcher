@@ -11,7 +11,7 @@ namespace Git_Watcher.Validation
     {
         public GitRepositoryValidator()
         {
-            RuleFor(c => c.Name).NotEmpty().WithMessage("Enter valid GitRepository Name");
+            RuleFor(c => c.RepoId).NotEmpty().WithMessage("Enter valid GitRepository Name");
             RuleFor(c => c.Link).NotEmpty().WithMessage("Enter valid GitRepository Link");
         }
     }

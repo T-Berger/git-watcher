@@ -28,11 +28,11 @@ namespace Git_Watcher.Controllers
 
         [HttpPost]
         [Route("users")]
-        public ActionResult CreateUser([FromBody]User user)
+        public ActionResult CreateUser([FromBody]NewBackendUser user)
         {
             _logger.LogInformation("Hello there");
-            _userRepo.Save(user);
-            return CreatedAtAction(nameof(GetUser), new { id = user.Id });
+            var key = _userRepo.Save(new User { GitUserName = user.UserName});
+            return CreatedAtAction(nameof(CreateUser), new { key = key });
         }
 
         [HttpGet]

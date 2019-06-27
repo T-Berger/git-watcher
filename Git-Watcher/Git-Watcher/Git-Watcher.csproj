@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GitWatcher.ApiModels\GitWatcher.ApiModels.csproj" />
+    <ProjectReference Include="..\GitWatcher.GitHubService\GitWatcher.GitHubService.csproj" />
   </ItemGroup>
 
 </Project>

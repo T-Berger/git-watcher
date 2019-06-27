@@ -2,7 +2,9 @@
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
+using Git_Watcher_Client.ApiCaller;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Git_Watcher_Client
@@ -11,6 +13,9 @@ namespace Git_Watcher_Client
     public class EventSelectionActivity : AppCompatActivity
     {
         string _repo;
+        private string repoId;
+        private long id;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -19,9 +24,15 @@ namespace Git_Watcher_Client
 
             _repo = Intent.GetStringExtra("Repo") ?? string.Empty;
 
+            Regex regex = new Regex("Id:(.*)\n");
+            var regexSting = regex.Match(_repo);
+            //Daniel hier ist deine Id
+            repoId = regexSting.Groups[1].ToString();
+            
             TextView text = FindViewById<TextView>(Resource.Id.eventSelectionRepo);
             text.Text = _repo;
-
+            
+            
             Button back = FindViewById<Button>(Resource.Id.eventBackButton);
             Button watch = FindViewById<Button>(Resource.Id.eventWatchButton);
 
@@ -45,7 +56,7 @@ namespace Git_Watcher_Client
             CheckBox issueBtn = FindViewById<CheckBox>(Resource.Id.eventSelectionIssue);
             bool trackIssues = issueBtn.Checked;
 
-            bool res = await callApi(trackIssues, trackCommit, trackCommit);
+            bool res = await callApi(trackIssues, trackCommit, trackMerges);
 
             if(res)
             {
@@ -62,13 +73,11 @@ namespace Git_Watcher_Client
             StartActivity(typeof(MainActivity));
         }
 
-        private async Task<Boolean> callApi(bool issue, bool commit, bool merge)
+        private async Task<bool> callApi(bool issue, bool commit, bool merge)
         {
             //TODO: get Repo name
-            string repo = _repo;
-            //TODO: post to api
-
-            return true;
+            WatcherBackendCalls caller = new WatcherBackendCalls(this);
+            return await caller.Subscribe(_repo);
         }
     }
 

@@ -11,7 +11,7 @@ namespace Git_Watcher.DataAccess.Repositories
         GitRepository Get(string name);
         GitRepository Get(Guid id);
         void Delete(Guid id);
-        void Save(GitRepository g);
+        Guid Save(GitRepository g);
     }
     public class GitRepo : IGitRepo, IDisposable
     {
@@ -38,7 +38,7 @@ namespace Git_Watcher.DataAccess.Repositories
 
         public GitRepository Get(string name)
         {
-            return _context.GitRepos.FirstOrDefault(g => g.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+            return _context.GitRepos.FirstOrDefault(g => g.RepoId.Equals(name, StringComparison.InvariantCultureIgnoreCase));
         }
 
         public GitRepository Get(Guid id)
@@ -46,13 +46,14 @@ namespace Git_Watcher.DataAccess.Repositories
             return _context.GitRepos.FirstOrDefault(g => g.Id == id);
         }
 
-        public void Save(GitRepository g)
+        public Guid Save(GitRepository g)
         {
             g.Id = Guid.NewGuid();
             if (Get(g.Id) != null)
-                return;
+                return Guid.Empty;
             _context.GitRepos.Add(g);
             _context.SaveChanges();
+            return g.Id;
         }
     }
 }
