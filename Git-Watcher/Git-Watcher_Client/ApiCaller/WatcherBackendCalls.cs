@@ -84,5 +84,23 @@ namespace Git_Watcher_Client.ApiCaller
             }
             return false;
         }
+
+        public async Task<bool> Unsubscribe(Guid subId)
+        {
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(_context);
+            Guid apiKey = Guid.Empty;
+            if (!prefs.Contains("UserLogin"))
+                apiKey = Guid.Parse(prefs.GetString("ApiKey", Guid.Empty.ToString()));
+            if (apiKey != Guid.Empty)
+            {
+                var res = await _client.DeleteAsync(baseUrl + $"subscriptions/{subId}");
+                if (res.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
     }
 }
