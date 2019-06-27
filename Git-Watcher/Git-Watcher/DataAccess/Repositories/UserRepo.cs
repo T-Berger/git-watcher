@@ -11,7 +11,7 @@ namespace Git_Watcher.DataAccess.Repositories
         User Get(string name);
         User Get(Guid id);
         Guid GetKey(Guid id);
-        void Save(User u);
+        Guid Save(User u);
         void Delete(Guid id);
     }
     public class UserRepo : IUserRepo
@@ -36,7 +36,7 @@ namespace Git_Watcher.DataAccess.Repositories
 
         public User Get(Guid id)
         {
-            return _context.Users.FirstOrDefault(u => u.Id == id);
+            return _context.Users.FirstOrDefault(u => u.ApiKey == id);
         }
 
         public Guid GetKey(Guid id)
@@ -47,16 +47,17 @@ namespace Git_Watcher.DataAccess.Repositories
             return Guid.Empty;
         }
 
-        public void Save(User u)
+        public Guid Save(User u)
         {
             u.Id = Guid.NewGuid();
             u.ApiKey = Guid.NewGuid();
             if (Get(u.Id) != null)
-                return;
+                return Guid.Empty;
             if (_context.Users.FirstOrDefault(x => x.ApiKey == u.ApiKey) != null)
-                return;
+                return Guid.Empty;
             _context.Users.Add(u);
             _context.SaveChanges();
+            return u.ApiKey;
         }
     }
 }

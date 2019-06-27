@@ -14,8 +14,7 @@ namespace Git_Watcher_Client.ApiCaller
 {
     public class WatcherBackendCalls
     {
-        //private readonly string baseUrl = "https://git-watcher-backend.azurewebsites.net/api/";
-        private readonly string baseUrl = "https://localhost:44329/api/";
+        private readonly string baseUrl = "http://git-watcher-backend.azurewebsites.net/api/";
         private readonly HttpClient _client;
         private readonly Guid clientInitKey = new Guid("5A3DA496-4120-4169-8373-339EEBA02B64");
         private readonly Context _context;
@@ -28,20 +27,21 @@ namespace Git_Watcher_Client.ApiCaller
 
         public async Task<bool> CreateUser(string userName)
         {
-            var newUser = new NewBackendUser { UserName = userName, Key = clientInitKey };
-            var userJson = new StringContent(newUser.ToString(), Encoding.UTF8, "application/json");
-            string reqUrl = baseUrl+"UserBackend/v1/createUser";
-            var res = await _client.PostAsync(reqUrl, userJson);
-            if(res.StatusCode == System.Net.HttpStatusCode.Created)
-            {
-                var content = res.Content.ToString();
-                ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(_context);
-                ISharedPreferencesEditor editor = prefs.Edit();
-                editor.PutString("ApiKey", content);
-                editor.Apply();
-                return true;
-            }
-            return false;
+                var newUser = new NewBackendUser { UserName = userName, Key = clientInitKey };
+                string userString = newUser.ToString();
+                var userJson = new StringContent(userString, Encoding.UTF8, "application/json");
+                var uri = new Uri(string.Concat(baseUrl, "UserBackend/v1/users", string.Empty));
+                var res = await _client.PostAsync(uri, userJson);
+                if (res.StatusCode == System.Net.HttpStatusCode.Created)
+                {
+                    var content = res.Content.ToString();
+                    ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(_context);
+                    ISharedPreferencesEditor editor = prefs.Edit();
+                    editor.PutString("ApiKey", content);
+                    editor.Apply();
+                    return true;
+                }
+           return false;
         }
 
         public async Task<List<Issue>> GetNewIssues()
@@ -62,6 +62,27 @@ namespace Git_Watcher_Client.ApiCaller
                 return null;
             }
             return null;
+        }
+
+        public async Task<bool> Subscribe(string repoID)
+        {
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(_context);
+            Guid apiKey = Guid.Empty;
+            if (!prefs.Contains("UserLogin"))
+                apiKey = Guid.Parse(prefs.GetString("ApiKey", Guid.Empty.ToString()));
+            if (apiKey != Guid.Empty)
+            {
+                var uri = new Uri(string.Concat(baseUrl, "RepoApi/v1/subscriptions"));
+                var subscriptionModel = new SubscriptionApi { ApiKey = apiKey, RepoId = repoID };
+                var content = new StringContent(subscriptionModel.ToString(), Encoding.UTF8, "application/json");
+                var res = await _client.PostAsync(uri, content);
+                if (res.StatusCode == System.Net.HttpStatusCode.Created)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
     }
 }

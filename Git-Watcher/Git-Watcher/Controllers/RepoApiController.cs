@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Git_Watcher.Models;
 using Git_Watcher.DataAccess.Repositories;
+using GitWatcher.ApiModels;
 
 namespace Git_Watcher.Controllers
 {
@@ -29,11 +30,22 @@ namespace Git_Watcher.Controllers
 
         [HttpPost]
         [Route("subscriptions")]
-        public ActionResult Subscribe([FromBody]Subscription sub)
+        public ActionResult Subscribe([FromBody]SubscriptionApi sub)
         {
             _logger.LogInformation("Subscribe now");
-            _subscriptionRepo.Save(sub);
-            return CreatedAtAction(nameof(subscriptionsByID), new { subID = sub.Id });
+            var user = _userRepo.Get(sub.ApiKey);
+            var repo = _gitRepo.Get(sub.RepoId);
+            var id = Guid.Empty;
+            if(repo == null)
+            {
+                id = _gitRepo.Save(new GitRepository { RepoId = sub.RepoId, Link = "" });
+            }
+            else
+            {
+                id = repo.Id;
+            }
+            _subscriptionRepo.Save(new Subscription { UserId = user.Id, RepoId = id});
+            return CreatedAtAction(nameof(Subscribe), new { res = "Successfully subscribed!"});
         }
 
         [HttpGet]
