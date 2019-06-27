@@ -114,7 +114,7 @@ namespace Git_Watcher.Controllers
                 return BadRequest("No Issues found for subscription");
             }
 
-            return Ok(issues.ToArray());
+            return Ok(issues);
         }
     }
 }
