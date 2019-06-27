@@ -123,7 +123,7 @@ namespace Git_Watcher_Client.ApiCaller
         {
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(_context);
             Guid apiKey = Guid.Empty;
-            if (!prefs.Contains("ApiKey"))
+            if (prefs.Contains("ApiKey"))
                 apiKey = Guid.Parse(prefs.GetString("ApiKey", Guid.Empty.ToString()));
             if (apiKey != Guid.Empty)
             {

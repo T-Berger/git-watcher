@@ -127,22 +127,18 @@ namespace Git_Watcher.Controllers
         /// <param name="userID">the id of the user</param>
         /// <returns>list of all subscription from the user</returns>
         [HttpGet]
-        [Route("subscriptions/byUser/{ApiKey}")]
-        public ActionResult Subscriptions(Guid userID)
+        [Route("subscriptions/byUser/{apiKey}")]
+        public ActionResult Subscriptions(Guid apiKey)
         {
+            var user = _userRepo.Get(apiKey);
+            var subs = _subscriptionRepo.GetByUser(user.Id);
+            var watchedRepos = new List<string>();
+            subs.ForEach(x => watchedRepos.Add(_gitRepo.Get(x.RepoId).RepoId));
+            var res = watchedRepos.Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine(String.Join(";", a)), sb => sb.ToString());
+            return Ok(res);
             return Ok(_subscriptionRepo.GetByUser(userID).Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine(String.Join(";", a)), sb => sb.ToString()));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("news")]
-        public ActionResult News()
-        {
-            return Ok("not implemented yet");
-        }
         /// <summary>
         /// get the issues for an user of the subscribed repositories
         /// </summary>

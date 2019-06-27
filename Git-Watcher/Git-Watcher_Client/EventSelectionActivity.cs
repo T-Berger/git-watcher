@@ -32,7 +32,7 @@ namespace Git_Watcher_Client
             TextView text = FindViewById<TextView>(Resource.Id.eventSelectionRepo);
             text.Text = _repo;
 
-            CheckBox commitBtn = FindViewById<CheckBox>(Resource.Id.eventSelectionCommit);
+            CheckBox commitBtn = FindViewById<CheckBox>(Resource.Id.eventSelectionIssue);
             commitBtn.Activated = true;
 
             Button back = FindViewById<Button>(Resource.Id.eventBackButton);
@@ -69,7 +69,7 @@ namespace Git_Watcher_Client
         {
             //TODO: get Repo name
             WatcherBackendCalls caller = new WatcherBackendCalls(this);
-            return await caller.Subscribe(_repo);
+            return await caller.Subscribe(repoId);
         }
     }
 
