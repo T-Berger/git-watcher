@@ -103,7 +103,8 @@ namespace Git_Watcher_Client.ApiCaller
                 apiKey = Guid.Parse(prefs.GetString("ApiKey", Guid.Empty.ToString()));
             if (apiKey != Guid.Empty)
             {
-                var res = await _client.DeleteAsync(baseUrl + $"subscriptions/{subId}");
+                var uri = new Uri(string.Concat(baseUrl, $"RepoApi/v1/subscriptions/{subId}"));
+                var res = await _client.DeleteAsync(uri);
                 if (res.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     ISharedPreferencesEditor editor = prefs.Edit();
@@ -116,6 +117,27 @@ namespace Git_Watcher_Client.ApiCaller
                 return false;
             }
             return false;
+        }
+
+        public async Task<List<string>> GetSubscriptions()
+        {
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(_context);
+            Guid apiKey = Guid.Empty;
+            if (!prefs.Contains("ApiKey"))
+                apiKey = Guid.Parse(prefs.GetString("ApiKey", Guid.Empty.ToString()));
+            if (apiKey != Guid.Empty)
+            {
+                var uri = new Uri(string.Concat(baseUrl, $"RepoApi/v1/subscriptions/byUser/{apiKey}"));
+                var res = await _client.GetAsync(uri);
+                var content = await res.Content.ReadAsStringAsync();
+                var list = new List<string>();
+                foreach (var str in content.Split(';'))
+                {
+                    list.Add(str);
+                }
+                return list;
+            }
+            return new List<string>();
         }
     }
 }

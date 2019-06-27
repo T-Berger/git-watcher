@@ -32,22 +32,28 @@ namespace Git_Watcher.Controllers
         [Route("subscriptions")]
         public ActionResult Subscribe([FromBody]SubscriptionApi sub)
         {
-            _logger.LogInformation("Subscribe now");
-            var user = _userRepo.Get(sub.ApiKey);
-            var repo = _gitRepo.Get(sub.RepoId);
-            var id = Guid.Empty;
-            if(repo == null)
+            try
             {
-                id = _gitRepo.Save(new GitRepository { RepoId = sub.RepoId, Link = "" });
+                var user = _userRepo.Get(sub.ApiKey);
+                var repo = _gitRepo.Get(sub.RepoId);
+                var id = Guid.Empty;
+                if (repo == null)
+                {
+                    id = _gitRepo.Save(new GitRepository { RepoId = sub.RepoId, Link = "" });
+                }
+                else
+                {
+                    id = repo.Id;
+                }
+                if (user == null)
+                    return BadRequest("User not found!");
+                var subId = _subscriptionRepo.Save(new Subscription { UserId = user.ApiKey, RepoId = id });
+                return CreatedAtAction(nameof(Subscribe), new { res = subId.ToString() });
             }
-            else
+            catch (Exception ex)
             {
-                id = repo.Id;
+                return BadRequest(ex.Message);
             }
-            if (user == null)
-                return BadRequest("User not found!");
-            var subId = _subscriptionRepo.Save(new Subscription { UserId = user.Id, RepoId = id});
-            return CreatedAtAction(nameof(Subscribe), new { res = subId.ToString()});
         }
 
         [HttpGet]
@@ -79,10 +85,10 @@ namespace Git_Watcher.Controllers
         }
 
         [HttpGet]
-        [Route("subscriptions/byUser/{userID}")]
+        [Route("subscriptions/byUser/{ApiKey}")]
         public ActionResult Subscriptions(Guid userID)
         {
-            return Ok(_subscriptionRepo.GetByUser(userID).ToArray());
+            return Ok(_subscriptionRepo.GetByUser(userID).Select(x => x.RepoId).ToList());
         }
 
         [HttpGet]
