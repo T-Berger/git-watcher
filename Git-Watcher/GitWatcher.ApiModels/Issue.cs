@@ -12,5 +12,10 @@ namespace Git_Watcher_Client.Models
         public DateTime Created { get; set; }
         public string Link { get; set; }
         public bool Important { get; set; }
+
+        public override string ToString()
+        {
+            return Link + "\n Issue:" + Name + "\n Von:" + Author + "\n Am:" + Created + "    Wichtig:" + Important;
+        }
     }
 }

@@ -5,14 +5,17 @@ using Android.Support.V7.App;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Git_Watcher_Client.ApiCaller;
+using Git_Watcher_Client.Models;
 
 namespace Git_Watcher_Client
 {
     [Activity(Label = "issues")]
     public class IssueActivity : AppCompatActivity
     {
-
         ListView _list;
+        List<Issue> _issuses;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -21,28 +24,30 @@ namespace Git_Watcher_Client
 
             _list = FindViewById<ListView>(Resource.Id.issuesList);
 
-            makeApiCall();
+            var newIssues= makeApiCall();
 
-            fillList();
+            fillList(newIssues);
         }
 
         public override void OnBackPressed()
         {
             StartActivity(typeof(MainActivity));
         }
-        private void fillList()
+        private void fillList(Task<List<Issue>> newIssues)
         {
-            List<Resource.String> list = new List<Resource.String>();
-            for (int i = 0; i < 10; i++)
+
+            _issuses = new List<Issue>();
+            foreach (var issue in newIssues.Result)
             {
-//                list.Add(<Resource.String>("Item_0" + i));
+                _issuses.Add(issue);
             }
-
-//            _list.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, list);
+            
+            _list.Adapter = new ArrayAdapter<Issue>(this, Android.Resource.Layout.SimpleListItem1, _issuses);
         }
-        private void makeApiCall()
+        private Task<List<Issue>> makeApiCall()
         {
-
+            WatcherBackendCalls caller = new WatcherBackendCalls(this);
+            return caller.GetNewIssues();
         }
     }
 }
