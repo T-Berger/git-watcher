@@ -13,7 +13,7 @@ namespace GitWatcher.ApiModels
         {
             return "{" +
                     $"RepoId:\"{RepoId}\"," +
-                    $"Key:\"{ApiKey.ToString()}\"" +
+                    $"ApiKey:\"{ApiKey.ToString()}\"" +
                 "}";
         }
     }

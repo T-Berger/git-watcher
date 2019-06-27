@@ -44,8 +44,10 @@ namespace Git_Watcher.Controllers
             {
                 id = repo.Id;
             }
-            _subscriptionRepo.Save(new Subscription { UserId = user.Id, RepoId = id});
-            return CreatedAtAction(nameof(Subscribe), new { res = "Successfully subscribed!"});
+            if (user == null)
+                return BadRequest("User not found!");
+            var subId = _subscriptionRepo.Save(new Subscription { UserId = user.Id, RepoId = id});
+            return CreatedAtAction(nameof(Subscribe), new { res = subId.ToString()});
         }
 
         [HttpGet]
