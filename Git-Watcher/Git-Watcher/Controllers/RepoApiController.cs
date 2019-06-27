@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Git_Watcher.Models;
 using Git_Watcher.DataAccess.Repositories;
 using GitWatcher.ApiModels;
+using System.Text;
 
 namespace Git_Watcher.Controllers
 {
@@ -88,7 +89,7 @@ namespace Git_Watcher.Controllers
         [Route("subscriptions/byUser/{ApiKey}")]
         public ActionResult Subscriptions(Guid userID)
         {
-            return Ok(_subscriptionRepo.GetByUser(userID).Select(x => x.RepoId).ToList());
+            return Ok(_subscriptionRepo.GetByUser(userID).Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine(String.Join(";", a)), sb => sb.ToString()));
         }
 
         [HttpGet]
