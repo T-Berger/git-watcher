@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Git_Watcher_Client
@@ -11,6 +12,9 @@ namespace Git_Watcher_Client
     public class EventSelectionActivity : AppCompatActivity
     {
         string _repo;
+        private string repoId;
+        private long id;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -19,9 +23,15 @@ namespace Git_Watcher_Client
 
             _repo = Intent.GetStringExtra("Repo") ?? string.Empty;
 
+            Regex regex = new Regex("Id:(.*)\n");
+            var regexSting = regex.Match(_repo);
+            //Daniel hier ist deine Id
+            repoId = regexSting.Groups[1].ToString();
+            
             TextView text = FindViewById<TextView>(Resource.Id.eventSelectionRepo);
             text.Text = _repo;
-
+            
+            
             Button back = FindViewById<Button>(Resource.Id.eventBackButton);
             Button watch = FindViewById<Button>(Resource.Id.eventWatchButton);
 

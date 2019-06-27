@@ -5,6 +5,7 @@ using Android.Support.V7.App;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
+using Git_Watcher_Client.Dto;
 
 namespace Git_Watcher_Client
 {
@@ -13,7 +14,7 @@ namespace Git_Watcher_Client
     {
 
         ListView _list;
-        List<string> _items;
+        List<Item> _items;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -27,6 +28,7 @@ namespace Git_Watcher_Client
                 _list.SetItemChecked(e.Position, true);
                 object o = _list.GetItemAtPosition(e.Position);
                 Console.WriteLine(o.ToString());
+                
                 var activity = new Intent(this, typeof(EventSelectionActivity));
                 activity.PutExtra("Repo", o.ToString());
                 StartActivity(activity);
@@ -35,7 +37,7 @@ namespace Git_Watcher_Client
             Button search = FindViewById<Button>(Resource.Id.searchButton);
             search.Click += OnSearchClicked;
 
-            _items = new List<string>();
+//            _items = new List<string>();
         }
 
         public override void OnBackPressed()
@@ -49,29 +51,42 @@ namespace Git_Watcher_Client
                 = FindViewById<Android.Support.Design.Widget.TextInputEditText>(Resource.Id.searchRepoInput);
             string text = field.Text;
             makeApiCall(text);
-            fillList();
+//            fillList();
         }
 
         private void onItemClicked(object sender, EventArgs eventArgs)
         {
-           string item = Convert.ToString(_list.SelectedItem);
-
+            string item = Convert.ToString(_list.SelectedItem);
+            
             StartActivity(typeof(EventSelectionActivity));
         }
 
-        private void fillList()
+//        private void fillList()
+//        {
+//            _items = new List<string>();
+//            for (int i = 0; i < 10; i++)
+//            {
+//                _items.Add("Item_0" + i);
+//            }
+//            _list.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, _items);
+//        }
+
+        private async void makeApiCall(string reponame)
         {
-            _items = new List<string>();
-            for (int i = 0; i < 10; i++)
+            var gitHubRestService = new GitHubRestService();
+            var searchRepo = await gitHubRestService.Search.SearchRepo(reponame);
+            
+            _items = new List<Item>();
+            foreach (var searchRepoItem in searchRepo.Items)
             {
-                _items.Add("Item_0" + i);
+//                _items.Add("Title:" + searchRepoItem.Name + "\n Description:" +  searchRepoItem.Description + "\n Id:" + searchRepoItem.Id);
+                _items.Add(searchRepoItem);
             }
-            _list.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, _items);
-        }
-
-        private void makeApiCall(string reponame)
-        {
-
+//            for (int i = 0; i < 10; i++)
+//            {
+//                _items.Add(searchRepo.Items.);
+//            }
+            _list.Adapter = new ArrayAdapter<Item>(this, Android.Resource.Layout.SimpleListItem1, _items);
         }
     }
 }

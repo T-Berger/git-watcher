@@ -31,6 +31,7 @@ namespace Git_Watcher_Client
         {
             base.OnStart();
             bool registered = CheckIfUserRegistered().Result;
+            registered = true;
             if (!registered)
             {
                 InitLogin();
