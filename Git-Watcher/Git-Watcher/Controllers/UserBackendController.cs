@@ -26,6 +26,11 @@ namespace Git_Watcher.Controllers
             _userRepo = userRepo;
         }
 
+        /// <summary>
+        /// create a user
+        /// </summary>
+        /// <param name="user">the user item to create</param>
+        /// <returns>the created user</returns>
         [HttpPost]
         [Route("users")]
         public ActionResult CreateUser([FromBody]NewBackendUser user)
@@ -35,6 +40,11 @@ namespace Git_Watcher.Controllers
             return CreatedAtAction(nameof(CreateUser), new { key = key });
         }
 
+        /// <summary>
+        /// get a user
+        /// </summary>
+        /// <param name="id">the id of the user</param>
+        /// <returns>the user item</returns>
         [HttpGet]
         [Route("users/{id}")]
         public ActionResult GetUser(Guid id)
@@ -45,6 +55,11 @@ namespace Git_Watcher.Controllers
             return Ok($"Username: {user.GitUserName}");
         }
 
+        /// <summary>
+        /// delete the user
+        /// </summary>
+        /// <param name="id">id of the user</param>
+        /// <returns>the result of the delete action</returns>
         [HttpDelete]
         [Route("users/{id}")]
         public ActionResult DeleteUser(Guid id)
@@ -53,6 +68,12 @@ namespace Git_Watcher.Controllers
             return Ok("User deleted");
         }
 
+        /// <summary>
+        /// update the user
+        /// </summary>
+        /// <param name="user">the new user item</param>
+        /// <param name="id">the id of the old user item</param>
+        /// <returns></returns>
         [HttpPut]
         [Route("users/{id}")]
         public ActionResult UpdateUser([FromBody]NewBackendUser user, Guid id)

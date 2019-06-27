@@ -34,6 +34,11 @@ namespace Git_Watcher.Controllers
             _githubService = new Git_Watcher_Client.GitHubRestService();
         }
 
+        /// <summary>
+        /// start watching a repository
+        /// </summary>
+        /// <param name="sub">the subscription with the data</param>
+        /// <returns>the subscription item</returns>
         [HttpPost]
         [Route("subscriptions")]
         public ActionResult Subscribe([FromBody]SubscriptionApi sub)
@@ -61,7 +66,11 @@ namespace Git_Watcher.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Get the subscription by the id
+        /// </summary>
+        /// <param name="subID">the id of the subscritption</param>
+        /// <returns>the subscription item</returns>
         [HttpGet]
         [Route("subscriptions/{subID}")]
         public ActionResult subscriptionsByID(Guid subID)
@@ -76,7 +85,11 @@ namespace Git_Watcher.Controllers
             return Ok(subscription);
         }
 
-
+        /// <summary>
+        /// End a subscription to a repository
+        /// </summary>
+        /// <param name="subID">the subscription</param>
+        /// <returns>the result of the delete action</returns>
         [HttpDelete]
         [Route("subscriptions/{subID}")]
         public ActionResult Unsubscribe(Guid subID)
@@ -89,7 +102,12 @@ namespace Git_Watcher.Controllers
             _subscriptionRepo.Delete(subID);
             return Ok();
         }
-
+        /// <summary>
+        /// update a subscription
+        /// </summary>
+        /// <param name="sub">the new sbscription item</param>
+        /// <param name="subID">the id of the old subscription</param>
+        /// <returns>the result of the update</returns>
         [HttpPut]
         [Route("subscriptions/{subID}")]
         public ActionResult Update([FromBody]SubscriptionApi sub, Guid subID)
@@ -103,6 +121,11 @@ namespace Git_Watcher.Controllers
             return CreatedAtAction(nameof(Subscribe), new { res = "Successfully updated!" });
         }
 
+        /// <summary>
+        /// get all subscriptions of an user
+        /// </summary>
+        /// <param name="userID">the id of the user</param>
+        /// <returns>list of all subscription from the user</returns>
         [HttpGet]
         [Route("subscriptions/byUser/{ApiKey}")]
         public ActionResult Subscriptions(Guid userID)
@@ -110,13 +133,21 @@ namespace Git_Watcher.Controllers
             return Ok(_subscriptionRepo.GetByUser(userID).Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine(String.Join(";", a)), sb => sb.ToString()));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("news")]
         public ActionResult News()
         {
             return Ok("not implemented yet");
         }
-
+        /// <summary>
+        /// get the issues for an user of the subscribed repositories
+        /// </summary>
+        /// <param name="userID">the id of the user</param>
+        /// <returns>list of all issues</returns>
         [HttpGet]
         [Route("issues/byUser/{userID}")]
         public ActionResult Issues(Guid userID)
