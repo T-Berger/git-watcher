@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using GitWatcher.ApiModels;
 
 namespace Git_Watcher.Models
 {
@@ -19,5 +20,12 @@ namespace Git_Watcher.Models
 
         [Required]
         public string Link { get; set; }
+
+        public GitRepository(SubscriptionApi subscriptionApi)
+        {
+            Id = subscriptionApi.;
+            RepoId = subscriptionApi.RepoId;
+            Link = subscriptionApi.link;
+        }
     }
 }

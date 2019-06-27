@@ -76,6 +76,19 @@ namespace Git_Watcher.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        [Route("subscriptions/{subID}")]
+        public ActionResult Update([FromBody]SubscriptionApi sub, Guid subID)
+        {
+            if (_subscriptionRepo.Get(subID) == null)
+            {
+                ModelState.AddModelError("SubscriptionError", $"SubscriptionID: {subID} not found");
+                return NotFound(ModelState);
+            }
+            _subscriptionRepo.Update(new Subscription { Id = subID, RepoId = new Guid(sub.RepoId), UserId = sub.ApiKey });
+            return CreatedAtAction(nameof(Subscribe), new { res = "Successfully updated!" });
+        }
+
         [HttpGet]
         [Route("subscriptions/byUser/{userID}")]
         public ActionResult Subscriptions(Guid userID)

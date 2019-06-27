@@ -12,6 +12,7 @@ namespace Git_Watcher.DataAccess.Repositories
         User Get(Guid id);
         Guid GetKey(Guid id);
         Guid Save(User u);
+        void Update(User u);
         void Delete(Guid id);
     }
     public class UserRepo : IUserRepo
@@ -58,6 +59,14 @@ namespace Git_Watcher.DataAccess.Repositories
             _context.Users.Add(u);
             _context.SaveChanges();
             return u.ApiKey;
+        }
+
+        public void Update(User u)
+        {
+            if (Get(u.Id) != null)
+                return;
+            _context.Users.Update(u);
+            _context.SaveChanges();
         }
     }
 }

@@ -52,5 +52,13 @@ namespace Git_Watcher.Controllers
             _userRepo.Delete(id);
             return Ok("User deleted");
         }
+
+        [HttpPut]
+        [Route("users/{id}")]
+        public ActionResult UpdateUser([FromBody]NewBackendUser user, Guid id)
+        {
+            _userRepo.Update(new User { Id = id, ApiKey = user.Key, GitUserName = user.UserName });
+            return CreatedAtAction(nameof(CreateUser), new { key = id });
+        }
     }
 }

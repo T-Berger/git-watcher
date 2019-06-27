@@ -11,6 +11,7 @@ namespace Git_Watcher.DataAccess.Repositories
         List<Subscription> GetByUser(Guid id);
         List<Subscription> GetByRepo(Guid id);
         Subscription Get(Guid id);
+        void Update(Subscription s);
         void Delete(Guid id);
         void Save(Subscription s);
     }
@@ -49,6 +50,14 @@ namespace Git_Watcher.DataAccess.Repositories
             _context.Subscriptions.Add(s);
             _context.SaveChanges();
 
+        }
+
+        public void Update(Subscription s)
+        {
+            if (Get(s.Id) == null)
+                return;
+            _context.Subscriptions.Update(s);
+            _context.SaveChanges();
         }
 
         public List<Subscription> GetByRepo(Guid id)
