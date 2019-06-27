@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Git_Watcher_Client;
 using Git_Watcher_Client.Dto;
-using Git_Watcher_Client.GitHubRestServices.Helpers;
 using GitWatcher.GitHubService.Helpers.JsonSerializeRootObject;
 using Newtonsoft.Json;
 using Xunit;

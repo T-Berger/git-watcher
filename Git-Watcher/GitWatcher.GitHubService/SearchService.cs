@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Git_Watcher_Client.Dto;
 using Git_Watcher_Client.GitHubRestServices.Interfaces;
 using ApiConnection = Git_Watcher_Client.GitHubRestServices.ApiConnection;
-using SearchRepositoryResult = Git_Watcher_Client.GitHubRestServices.Helpers.SearchRepositoryResult;
 
 namespace GitWatcher.GitHubService
 {

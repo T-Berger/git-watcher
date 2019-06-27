@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Git_Watcher_Client.Dto;
-using Git_Watcher_Client.GitHubRestServices.Helpers;
 
 namespace Git_Watcher_Client.GitHubRestServices.Interfaces
 {
