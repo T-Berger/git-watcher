@@ -35,7 +35,6 @@ namespace Git_Watcher_Client
         }
         private void fillList(Task<List<Issue>> newIssues)
         {
-
             _issuses = new List<Issue>();
             foreach (var issue in newIssues.Result)
             {

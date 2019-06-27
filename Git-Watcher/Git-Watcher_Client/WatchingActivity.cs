@@ -4,6 +4,7 @@ using Android.Support.V7.App;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
+using Git_Watcher_Client.ApiCaller;
 using Git_Watcher_Client.Dto;
 
 namespace Git_Watcher_Client
@@ -20,9 +21,9 @@ namespace Git_Watcher_Client
             SetContentView(Resource.Layout.watching_repos);
 
             _list = FindViewById<ListView>(Resource.Id.watchingList);
-
-            long[] repoIds = new long[]{154739983, 154739983};
-            makeApiCallAndFillList(repoIds);
+            
+            WatcherBackendCalls caller = new WatcherBackendCalls(this);
+            MakeApiCallAndFillList(caller.GetSubscriptions().Result);
         }
 
         public override void OnBackPressed()
@@ -31,14 +32,14 @@ namespace Git_Watcher_Client
         }
 
         
-        private async void makeApiCallAndFillList(long[] repoIds)
+        private async void MakeApiCallAndFillList(List<string> repoIds)
         {
             var gitHubRestService = new GitHubRestService();
             
             _items = new List<RepositoryDto>();
             foreach (var id in repoIds)
             {
-                var item = gitHubRestService.Repository.Get(id);
+                var item = gitHubRestService.Repository.Get(long.Parse(id));
                 _items.Add(item.Result);
             }
 
