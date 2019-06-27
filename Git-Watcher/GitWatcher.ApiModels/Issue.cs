@@ -12,5 +12,14 @@ namespace Git_Watcher_Client.Models
         public DateTime Created { get; set; }
         public string Link { get; set; }
         public bool Important { get; set; }
+
+        public Issue(string author, string name, DateTime created, string link, bool important)
+        {
+            Author = author;
+            Name = name;
+            Created = created;
+            Link = link;
+            Important = important;
+        }
     }
 }

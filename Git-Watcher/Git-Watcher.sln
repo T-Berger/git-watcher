@@ -1,17 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.645
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Git-Watcher", "Git-Watcher\Git-Watcher.csproj", "{FF7599E4-5DF2-4E01-8546-665057EF4EB4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A3333269-D706-4EF6-B6DE-1CC1CCB3B6A1} = {A3333269-D706-4EF6-B6DE-1CC1CCB3B6A1}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git-Watcher_Client", "Git-Watcher_Client\Git-Watcher_Client.csproj", "{4879D371-DC97-48E1-839B-A4635992BBB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWatcher.ApiModels", "GitWatcher.ApiModels\GitWatcher.ApiModels.csproj", "{7E732516-C7FD-49B0-BAE0-A93E4B7C127A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitWatcher.ApiModels", "GitWatcher.ApiModels\GitWatcher.ApiModels.csproj", "{7E732516-C7FD-49B0-BAE0-A93E4B7C127A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWatcher.Tests", "GitWatcher.Tests\GitWatcher.Tests.csproj", "{A1B847EB-2E8E-4A35-8D33-BAAA9A27ADED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitWatcher.Tests", "GitWatcher.Tests\GitWatcher.Tests.csproj", "{A1B847EB-2E8E-4A35-8D33-BAAA9A27ADED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWatcher.GitHubService", "GitWatcher.GitHubService\GitWatcher.GitHubService.csproj", "{A3333269-D706-4EF6-B6DE-1CC1CCB3B6A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitWatcher.GitHubService", "GitWatcher.GitHubService\GitWatcher.GitHubService.csproj", "{A3333269-D706-4EF6-B6DE-1CC1CCB3B6A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
