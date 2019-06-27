@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git-Watcher_Client", "Git-W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWatcher.ApiModels", "GitWatcher.ApiModels\GitWatcher.ApiModels.csproj", "{7E732516-C7FD-49B0-BAE0-A93E4B7C127A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWatcher.Tests", "GitWatcher.Tests\GitWatcher.Tests.csproj", "{A1B847EB-2E8E-4A35-8D33-BAAA9A27ADED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWatcher.GitHubService", "GitWatcher.GitHubService\GitWatcher.GitHubService.csproj", "{A3333269-D706-4EF6-B6DE-1CC1CCB3B6A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{7E732516-C7FD-49B0-BAE0-A93E4B7C127A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E732516-C7FD-49B0-BAE0-A93E4B7C127A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E732516-C7FD-49B0-BAE0-A93E4B7C127A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B847EB-2E8E-4A35-8D33-BAAA9A27ADED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B847EB-2E8E-4A35-8D33-BAAA9A27ADED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B847EB-2E8E-4A35-8D33-BAAA9A27ADED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B847EB-2E8E-4A35-8D33-BAAA9A27ADED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3333269-D706-4EF6-B6DE-1CC1CCB3B6A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3333269-D706-4EF6-B6DE-1CC1CCB3B6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3333269-D706-4EF6-B6DE-1CC1CCB3B6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3333269-D706-4EF6-B6DE-1CC1CCB3B6A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

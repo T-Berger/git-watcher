@@ -63,6 +63,45 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GitHubRestServices\ApiConnection.cs">
+      <Link>GitHubRestServices\ApiConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\Helpers\UriExtensions.cs">
+      <Link>GitHubRestServices\Helpers\UriExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\Http\Request.cs">
+      <Link>GitHubRestServices\Http\Request.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\Http\Response.cs">
+      <Link>GitHubRestServices\Http\Response.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\Interfaces\IApiConnection.cs">
+      <Link>GitHubRestServices\Interfaces\IApiConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\Interfaces\IConnection.cs">
+      <Link>GitHubRestServices\Interfaces\IConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\Interfaces\IGitHubRestService.cs">
+      <Link>GitHubRestServices\Interfaces\IGitHubRestService.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\Interfaces\IIssuesService.cs">
+      <Link>GitHubRestServices\Interfaces\IIssuesService.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\Interfaces\IRepositoriesService.cs">
+      <Link>GitHubRestServices\Interfaces\IRepositoriesService.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\Interfaces\IRequest.cs">
+      <Link>GitHubRestServices\Interfaces\IRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\Interfaces\IResponce.cs">
+      <Link>GitHubRestServices\Interfaces\IResponce.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\IssuesService.cs">
+      <Link>GitHubRestServices\IssuesService.cs</Link>
+    </Compile>
+    <Compile Include="..\GitHubRestServices\RepositoriesService.cs">
+      <Link>GitHubRestServices\RepositoriesService.cs</Link>
+    </Compile>
     <Compile Include="ApiCaller\WatcherBackendCalls.cs" />
     <Compile Include="EventSelectionActivity.cs" />
     <Compile Include="IssueActivity.cs" />
