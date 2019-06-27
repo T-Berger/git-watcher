@@ -82,10 +82,7 @@ namespace Git_Watcher_Client
 //                _items.Add("Title:" + searchRepoItem.Name + "\n Description:" +  searchRepoItem.Description + "\n Id:" + searchRepoItem.Id);
                 _items.Add(searchRepoItem);
             }
-//            for (int i = 0; i < 10; i++)
-//            {
-//                _items.Add(searchRepo.Items.);
-//            }
+
             _list.Adapter = new ArrayAdapter<Item>(this, Android.Resource.Layout.SimpleListItem1, _items);
         }
     }

@@ -13,7 +13,7 @@ namespace Git_Watcher.DataAccess.Repositories
         Subscription Get(Guid id);
         void Update(Subscription s);
         void Delete(Guid id);
-        void Save(Subscription s);
+        Guid Save(Subscription s);
     }
     public class SubscriptionRepo : ISubscriptionRepo
     {
@@ -42,13 +42,14 @@ namespace Git_Watcher.DataAccess.Repositories
             return _context.Subscriptions.FirstOrDefault(s => s.Id == id);
         }
 
-        public void Save(Subscription s)
+        public Guid Save(Subscription s)
         {
             s.Id = Guid.NewGuid();
             if (Get(s.Id) != null)
-                return;
+                return Guid.Empty;
             _context.Subscriptions.Add(s);
             _context.SaveChanges();
+            return s.Id;
 
         }
 

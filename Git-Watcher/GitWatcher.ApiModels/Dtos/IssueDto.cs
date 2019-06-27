@@ -7,10 +7,16 @@ namespace Git_Watcher_Client.Dto
 {
     public class IssueDto
     {
+        /// <summary>
+        /// The internal Id for this issue (not the issue number)
+        /// </summary>
         [JsonProperty("id")] public long Id { get; set; }
 
         [JsonProperty("node_id")] public string NodeId { get; set; }
 
+        /// <summary>
+        /// The URL for this issue.
+        /// </summary>
         [JsonProperty("url")] public Uri Url { get; set; }
 
         [JsonProperty("repository_url")] public Uri RepositoryUrl { get; set; }
@@ -21,14 +27,26 @@ namespace Git_Watcher_Client.Dto
 
         [JsonProperty("events_url")] public Uri EventsUrl { get; set; }
 
+        /// <summary>
+        /// The URL for the HTML view of this issue.
+        /// </summary>
         [JsonProperty("html_url")] public Uri HtmlUrl { get; set; }
 
+        /// <summary>
+        /// The issue number.
+        /// </summary>
         [JsonProperty("number")] public long Number { get; set; }
 
         [JsonProperty("state")] public string State { get; set; }
 
+        /// <summary>
+        /// Title of the issue
+        /// </summary>
         [JsonProperty("title")] public string Title { get; set; }
 
+        /// <summary>
+        /// Details about the issue.
+        /// </summary>
         [JsonProperty("body")] public string Body { get; set; }
 
         [JsonProperty("user")] public Assignee User { get; set; }
@@ -45,16 +63,31 @@ namespace Git_Watcher_Client.Dto
 
         [JsonProperty("active_lock_reason")] public string ActiveLockReason { get; set; }
 
+        /// <summary>
+        /// The number of comments on the issue.
+        /// </summary>
         [JsonProperty("comments")] public long Comments { get; set; }
 
         [JsonProperty("pull_request")] public PullRequest PullRequest { get; set; }
 
+        /// <summary>
+        /// The date the issue was closed if closed.
+        /// </summary>
         [JsonProperty("closed_at")] public object ClosedAt { get; set; }
 
+        /// <summary>
+        /// The date the issue was created.
+        /// </summary>
         [JsonProperty("created_at")] public DateTimeOffset CreatedAt { get; set; }
 
+        /// <summary>
+        /// The date the issue was last updated.
+        /// </summary>
         [JsonProperty("updated_at")] public DateTimeOffset UpdatedAt { get; set; }
 
+        /// <summary>
+        /// The repository the issue comes from.
+        /// </summary>
         [JsonProperty("repository")] public Repository Repository { get; set; }
     }
 

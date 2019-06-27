@@ -23,20 +23,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/eventSelectionRepo" />
     <CheckBox
-        android:text="Commits"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/eventSelectionCommit" />
-    <CheckBox
         android:text="Issues"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/eventSelectionIssue" />
-    <CheckBox
-        android:text="Merge Requests"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/eventSelectionMerge" />
     <Button
         android:text="Back"
         android:onClick="onBackClicked"
