@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Git_Watcher_Client.Dto;
 using Git_Watcher_Client.GitHubRestServices.Interfaces;
 using ApiConnection = Git_Watcher_Client.GitHubRestServices.ApiConnection;
 using SearchRepositoryResult = Git_Watcher_Client.GitHubRestServices.Helpers.SearchRepositoryResult;
@@ -20,12 +21,12 @@ namespace GitWatcher.GitHubService
         /// </summary>
         /// <param name="search">The given search string</param>
         /// <returns>List of repos</returns>
-        public Task<SearchRepositoryResult> SearchRepo(string search)
+        public Task<SearchRepoDto> SearchRepo(string search)
         {
             
             if (string.IsNullOrEmpty(search)) throw new ArgumentNullException(search, nameof(search));
 
-            return _ApiConnection.Get<SearchRepositoryResult>(ApiConnection.SearchRepositories(search));
+            return _ApiConnection.Get<SearchRepoDto>(ApiConnection.SearchRepositories(search));
         }
 
     }

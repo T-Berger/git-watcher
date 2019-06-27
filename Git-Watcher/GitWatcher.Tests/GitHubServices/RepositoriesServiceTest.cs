@@ -30,7 +30,7 @@ namespace GitWatcher.Tests.GitHubServices
                         var repository = await gitHubRestService.Repository.Get("haacked", "seegit");
             
                         Assert.IsType<RepositoryDto>(repository);
-                        Assert.Equal("https://github.com/haacked/SeeGit.git", repository.CloneUrl);
+                        Assert.Equal("https://github.com/haacked/SeeGit.git", repository.CloneUrl.ToString());
                         Assert.False(repository.Private);
                     }
 
@@ -40,9 +40,9 @@ namespace GitWatcher.Tests.GitHubServices
                         var gitHubRestService = new GitHubRestService();
                         var repository = await gitHubRestService.Repository.Get(3622414);
 
-                        Assert.Equal("https://github.com/haacked/SeeGit.git", repository.CloneUrl);
+                        Assert.Equal("https://github.com/haacked/SeeGit.git", repository.CloneUrl.ToString());
                         Assert.Equal("SeeGit", repository.Name);
-                        Assert.Equal("https://api.github.com/repos/haacked/SeeGit",repository.Url);
+                        Assert.Equal("https://api.github.com/repos/haacked/SeeGit",repository.Url.ToString());
                         Assert.False(repository.Private);
                     }
                     

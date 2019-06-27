@@ -25,7 +25,8 @@ namespace Git_Watcher_Client.GitHubRestServices
         public Task<IssueDto> Get(long repositoryId, int number)
         {
 //            var owner = _ApiConnection.GetRepoWithUserName<RepositoryDto>(ApiConnection.Repository(repositoryId));
-            return _ApiConnection.Get<IssueDto>(ApiConnection.Issue("halloWelt", repositoryId, number));
+            var repo = _ApiConnection.Get<RepositoryDto>(ApiConnection.Repository(repositoryId)).Result;
+            return _ApiConnection.Get<IssueDto>(ApiConnection.Issue(repo.Owner.Login, repo.Name, number));
         }
         
         // <summary>
@@ -63,8 +64,13 @@ namespace Git_Watcher_Client.GitHubRestServices
         /// <param name="repositoryId">The Id of the repository</param>
         public Task<IReadOnlyList<IssueDto>> GetAllForRepository(long repositoryId)
         {
+//            ApiConnection.Repository()
 //            string owner = _ApiConnection.Get<RepositoryDto>(ApiConnection.Repository(repositoryId)).Result.Owner.Name;
-            return _ApiConnection.GetAll<IssueDto>(ApiConnection.Issues("test", repositoryId));
+
+            var repo = _ApiConnection.Get<RepositoryDto>(ApiConnection.Repository(repositoryId)).Result;
+            
+            
+            return _ApiConnection.GetAll<IssueDto>(ApiConnection.Issues(repo.Owner.Login, repo.Name));
         }
     }
 }

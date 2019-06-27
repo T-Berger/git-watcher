@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Git_Watcher_Client.Dto;
 using Git_Watcher_Client.GitHubRestServices.Helpers;
 
 namespace Git_Watcher_Client.GitHubRestServices.Interfaces
@@ -11,7 +12,7 @@ namespace Git_Watcher_Client.GitHubRestServices.Interfaces
         /// </summary>
         /// <param name="repoName">A Substring from RepoName</param>
         /// <returns>List of repos</returns>
-        Task<SearchRepositoryResult> SearchRepo(string repoName);
+        Task<SearchRepoDto> SearchRepo(string repoName);
 
 //        /// <summary>
 //        /// Queue an indexing job for all the issues in a repository (must be Site Admin user).

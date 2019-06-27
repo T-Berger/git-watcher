@@ -32,7 +32,7 @@ namespace Git_Watcher_Client
         }
         private void fillList()
         {
-            List<String> list = new List<String>();
+            List<Resource.String> list = new List<Resource.String>();
             for (int i = 0; i < 10; i++)
             {
                 list.Add("Item_0" + i);

@@ -34,12 +34,12 @@ namespace GitWatcher.Tests.GitHubServices
             public async Task CanGetIssueWithRepositoryId()
             {
                 var gitHubRestService = new GitHubRestService();
-                var issue = await gitHubRestService.Issue.Get(3622414, 1347);
+                var issue = await gitHubRestService.Issue.Get(1296269, 512);
                     
-                Assert.Equal("https://api.github.com/repos/octocat/Hello-World", issue.RepositoryUrl);
-                Assert.Equal("https://api.github.com/repos/octocat/Hello-World/issues/1347",issue.Url);
-                Assert.Equal("I'm having a problem with this.",issue.Body);                
-                Assert.Equal("Found a bug",issue.Title);
+                Assert.Equal("https://api.github.com/repos/octocat/Hello-World", issue.RepositoryUrl.ToString());
+                Assert.Equal("https://api.github.com/repos/octocat/Hello-World/issues/512",issue.Url.ToString());
+                Assert.Equal("",issue.Body);                
+                Assert.Equal("Update README",issue.Title);
             }
         }
 
@@ -55,7 +55,7 @@ namespace GitWatcher.Tests.GitHubServices
                 var gitHubRestService = new GitHubRestService();
                 var issues = await gitHubRestService.Issue.GetAllForRepository("octocat", "Hello-World");
 
-                Assert.Equal(5, issues.Count);
+                Assert.Equal(30, issues.Count);
             }
             
             [Fact]
