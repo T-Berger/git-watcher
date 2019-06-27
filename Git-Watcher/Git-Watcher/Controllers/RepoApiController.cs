@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Git_Watcher.Models;
 using Git_Watcher.DataAccess.Repositories;
+using Git_Watcher_Client.Models;
+using Git_Watcher_Client.GitHubRestServices.Interfaces;
+using Git_Watcher_Client.Dto;
 using GitWatcher.ApiModels;
 using System.Text;
 
@@ -20,6 +23,7 @@ namespace Git_Watcher.Controllers
         private readonly IUserRepo _userRepo;
         private readonly ILogger _logger;
         private readonly IGitRepo _gitRepo;
+        private readonly IGitHubRestService _githubService;
 
         public RepoApiController(ISubscriptionRepo subscriptionRepo ,IUserRepo userRepo, IGitRepo gitRepo, ILogger<RepoApiController> logger)
         {
@@ -27,6 +31,7 @@ namespace Git_Watcher.Controllers
             _userRepo = userRepo;
             _gitRepo = gitRepo;
             _logger = logger;
+            _githubService = new Git_Watcher_Client.GitHubRestService();
         }
 
         [HttpPost]
@@ -97,6 +102,40 @@ namespace Git_Watcher.Controllers
         public ActionResult News()
         {
             return Ok("not implemented yet");
+        }
+
+        [HttpGet]
+        [Route("issues/byUser/{userID}")]
+        public ActionResult Issues(Guid userID)
+        {
+            List<Subscription> subscriptions = _subscriptionRepo.GetByUser(userID);
+
+            if(subscriptions.Count == 0)
+            {
+                return BadRequest("You are not subscribed to any issues");
+            }
+
+            List<Issue> issues = new List<Issue>();
+
+            subscriptions.ForEach((Subscription sub) =>
+            {
+                Guid repo = sub.RepoId;
+                Task<IReadOnlyList<IssueDto>>  subsIssues = _githubService.Issue.GetAllForRepository(Convert.ToInt64(repo));
+                IssueDto[] issueArr = subsIssues.Result.ToArray<IssueDto>();
+                
+                for(int i=0; i < issueArr.Count<IssueDto>(); i++)
+                {
+                    IssueDto dto = issueArr.ElementAt<IssueDto>(i);
+                    issues.Add(new Issue(dto.User.ToString(), dto.Title, dto.CreatedAt.UtcDateTime, dto.Url.ToString(), false));
+                }
+            });
+
+            if(issues.Count == 0)
+            {
+                return BadRequest("No Issues found for subscription");
+            }
+
+            return Ok(issues);
         }
     }
 }
