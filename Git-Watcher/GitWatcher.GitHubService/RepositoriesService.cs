@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Git_Watcher_Client.Dto;
 using Git_Watcher_Client.GitHubRestServices.Interfaces;
 using GitWatcher.ApiModels;
+using GitWatcher.GitHubService.Helpers;
 using IApiConnection = Git_Watcher_Client.GitHubRestServices.Interfaces.IApiConnection;
 
 
@@ -27,7 +28,7 @@ namespace Git_Watcher_Client.GitHubRestServices
         /// <param name="name">The name of the repository</param>  
         public Task<RepositoryDto> Get(string owner, string name)
         {
-            return _ApiConnection.Get<RepositoryDto>(ApiConnection.Repository(owner, name));
+            return _ApiConnection.Get<RepositoryDto>(UriHelper.Repository(owner, name));
         }
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace Git_Watcher_Client.GitHubRestServices
         /// </remarks>
         public Task<RepositoryDto> Get(long repositoryId)
         {
-            return _ApiConnection.Get<RepositoryDto>(ApiConnection.Repository(repositoryId));
+            return _ApiConnection.Get<RepositoryDto>(UriHelper.Repository(repositoryId));
         }
         
         /// <summary>
@@ -50,7 +51,7 @@ namespace Git_Watcher_Client.GitHubRestServices
         /// </remarks>
         public Task<IReadOnlyList<RepositoryDto>> GetAllPublic()
         {
-            return _ApiConnection.GetAll<RepositoryDto>(ApiConnection.AllPublicRepositories());
+            return _ApiConnection.GetAll<RepositoryDto>(UriHelper.AllPublicRepositories());
         }
     }
 }

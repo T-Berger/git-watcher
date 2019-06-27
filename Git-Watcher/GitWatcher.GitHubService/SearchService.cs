@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Git_Watcher_Client.Dto;
 using Git_Watcher_Client.GitHubRestServices.Interfaces;
+using GitWatcher.GitHubService.Helpers;
 using ApiConnection = Git_Watcher_Client.GitHubRestServices.ApiConnection;
 
 namespace GitWatcher.GitHubService
@@ -25,7 +26,7 @@ namespace GitWatcher.GitHubService
             
             if (string.IsNullOrEmpty(search)) throw new ArgumentNullException(search, nameof(search));
 
-            return _ApiConnection.Get<SearchRepoDto>(ApiConnection.SearchRepositories(search));
+            return _ApiConnection.Get<SearchRepoDto>(UriHelper.SearchRepositories(search));
         }
 
     }
