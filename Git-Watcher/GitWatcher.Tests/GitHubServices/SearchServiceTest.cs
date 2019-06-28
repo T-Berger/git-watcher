@@ -133,7 +133,7 @@ namespace GitWatcher.Tests.GitHubServices
             [Fact]
             public async Task JsonTestWithReadAsAsync()
             {
-                var result = default(SearchRepoJsonRoot.RootResult);
+                var result = default(SearchRepoDto);
                 var httpClient = new HttpClient();
                 httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("C# App");
                 var response = await httpClient.GetAsync("https://api.github.com/search/repositories?q=UnofficialCrusaderPatchin:name");
@@ -145,13 +145,13 @@ namespace GitWatcher.Tests.GitHubServices
                     {
                         if (typeof(SearchRepoJsonRoot.RootResult).Namespace != "System")
                         {
-                            result = JsonConvert.DeserializeObject<SearchRepoJsonRoot.RootResult>(x?.Result);
+                            result = JsonConvert.DeserializeObject<SearchRepoDto>(x?.Result);
 //                            Assert.Equal(json, x?.Result);
 
                         }
                         else
-                            result = (SearchRepoJsonRoot.RootResult) Convert.ChangeType(x?.Result,
-                                typeof(SearchRepoJsonRoot.RootResult));
+                            result = (SearchRepoDto) Convert.ChangeType(x?.Result,
+                                typeof(SearchRepoDto));
                     }, CancellationToken.None);
                 }
 

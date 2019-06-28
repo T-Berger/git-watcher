@@ -5,6 +5,12 @@ namespace Git_Watcher_Client.Dto
 {
     public class Owner
     {
+        [JsonConstructor]
+        public Owner()
+        {
+            
+        }
+        
         [JsonProperty("login")] public string Login { get; set; }
 
         [JsonProperty("id")] public long Id { get; set; }

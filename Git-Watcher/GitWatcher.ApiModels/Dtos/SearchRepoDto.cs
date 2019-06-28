@@ -5,6 +5,12 @@ namespace Git_Watcher_Client.Dto
 {
     public class SearchRepoDto
     {
+        [JsonConstructor]
+        public SearchRepoDto()
+        {
+            
+        }
+
         [JsonProperty("total_count")] public long TotalCount { get; set; }
 
         [JsonProperty("incomplete_results")] public bool IncompleteResults { get; set; }
@@ -14,6 +20,12 @@ namespace Git_Watcher_Client.Dto
 
     public class Item
     {
+        [JsonConstructor]
+        public Item()
+        {
+            
+        }
+        
         [JsonProperty("id")] public long Id { get; set; }
 
         [JsonProperty("node_id")] public string NodeId { get; set; }

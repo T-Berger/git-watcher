@@ -6,96 +6,12 @@ namespace Git_Watcher_Client.Dto
 {
     public class RepositoryDto
     {
-        public RepositoryDto(long id, string nodeId, string name, string fullName, bool @private, Owner owner, Uri htmlUrl,
-            string description, bool fork, Uri url, Uri forksUrl, string keysUrl, string collaboratorsUrl, Uri teamsUrl,
-            Uri hooksUrl, string issueEventsUrl, Uri eventsUrl, string assigneesUrl, string branchesUrl, Uri tagsUrl,
-            string blobsUrl, string gitTagsUrl, string gitRefsUrl, string treesUrl, string statusesUrl,
-            Uri languagesUrl, Uri stargazersUrl, Uri contributorsUrl, Uri subscribersUrl, Uri subscriptionUrl,
-            string commitsUrl, string gitCommitsUrl, string commentsUrl, string issueCommentUrl, string contentsUrl,
-            string compareUrl, Uri mergesUrl, string archiveUrl, Uri downloadsUrl, string issuesUrl, string pullsUrl,
-            string milestonesUrl, string notificationsUrl, string labelsUrl, string releasesUrl, Uri deploymentsUrl,
-            DateTimeOffset createdAt, DateTimeOffset updatedAt, DateTimeOffset pushedAt, string gitUrl, string sshUrl,
-            Uri cloneUrl, Uri svnUrl, string homepage, long size, long stargazersCount, long watchersCount,
-            string language, bool hasIssues, bool hasProjects, bool hasDownloads, bool hasWiki, bool hasPages,
-            long forksCount, object mirrorUrl, bool archived, bool disabled, long openIssuesCount, License license,
-            long forks, long openIssues, long watchers, string defaultBranch, double score)
+        [JsonConstructor]
+        public RepositoryDto()
         {
-            Id = id;
-            NodeId = nodeId;
-            Name = name;
-            FullName = fullName;
-            Private = @private;
-            Owner = owner;
-            HtmlUrl = htmlUrl;
-            Description = description;
-            Fork = fork;
-            Url = url;
-            ForksUrl = forksUrl;
-            KeysUrl = keysUrl;
-            CollaboratorsUrl = collaboratorsUrl;
-            TeamsUrl = teamsUrl;
-            HooksUrl = hooksUrl;
-            IssueEventsUrl = issueEventsUrl;
-            EventsUrl = eventsUrl;
-            AssigneesUrl = assigneesUrl;
-            BranchesUrl = branchesUrl;
-            TagsUrl = tagsUrl;
-            BlobsUrl = blobsUrl;
-            GitTagsUrl = gitTagsUrl;
-            GitRefsUrl = gitRefsUrl;
-            TreesUrl = treesUrl;
-            StatusesUrl = statusesUrl;
-            LanguagesUrl = languagesUrl;
-            StargazersUrl = stargazersUrl;
-            ContributorsUrl = contributorsUrl;
-            SubscribersUrl = subscribersUrl;
-            SubscriptionUrl = subscriptionUrl;
-            CommitsUrl = commitsUrl;
-            GitCommitsUrl = gitCommitsUrl;
-            CommentsUrl = commentsUrl;
-            IssueCommentUrl = issueCommentUrl;
-            ContentsUrl = contentsUrl;
-            CompareUrl = compareUrl;
-            MergesUrl = mergesUrl;
-            ArchiveUrl = archiveUrl;
-            DownloadsUrl = downloadsUrl;
-            IssuesUrl = issuesUrl;
-            PullsUrl = pullsUrl;
-            MilestonesUrl = milestonesUrl;
-            NotificationsUrl = notificationsUrl;
-            LabelsUrl = labelsUrl;
-            ReleasesUrl = releasesUrl;
-            DeploymentsUrl = deploymentsUrl;
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
-            PushedAt = pushedAt;
-            GitUrl = gitUrl;
-            SshUrl = sshUrl;
-            CloneUrl = cloneUrl;
-            SvnUrl = svnUrl;
-            Homepage = homepage;
-            Size = size;
-            StargazersCount = stargazersCount;
-            WatchersCount = watchersCount;
-            Language = language;
-            HasIssues = hasIssues;
-            HasProjects = hasProjects;
-            HasDownloads = hasDownloads;
-            HasWiki = hasWiki;
-            HasPages = hasPages;
-            ForksCount = forksCount;
-            MirrorUrl = mirrorUrl;
-            Archived = archived;
-            Disabled = disabled;
-            OpenIssuesCount = openIssuesCount;
-            License = license;
-            Forks = forks;
-            OpenIssues = openIssues;
-            Watchers = watchers;
-            DefaultBranch = defaultBranch;
-            Score = score;
+            
         }
-
+        
         [JsonProperty("id")] public long Id { get; set; }
 
         [JsonProperty("node_id")] public string NodeId { get; set; }
