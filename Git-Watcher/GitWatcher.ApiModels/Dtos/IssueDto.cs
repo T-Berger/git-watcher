@@ -13,41 +13,6 @@ namespace Git_Watcher_Client.Dto
             
         }
 
-        
-        [JsonConstructor]
-        public IssueDto(long id, string nodeId, Uri url, Uri repositoryUrl, string labelsUrl, Uri commentsUrl,
-            Uri eventsUrl, Uri htmlUrl, long number, string state, string title, string body, Assignee user,
-            Label[] labels, Assignee assignee, Assignee[] assignees, Milestone milestone, bool locked,
-            string activeLockReason, long comments, PullRequest pullRequest, object closedAt, DateTimeOffset createdAt,
-            DateTimeOffset updatedAt, Repository repository)
-        {
-            Id = id;
-            NodeId = nodeId;
-            Url = url;
-            RepositoryUrl = repositoryUrl;
-            LabelsUrl = labelsUrl;
-            CommentsUrl = commentsUrl;
-            EventsUrl = eventsUrl;
-            HtmlUrl = htmlUrl;
-            Number = number;
-            State = state;
-            Title = title;
-            Body = body;
-            User = user;
-            Labels = labels;
-            Assignee = assignee;
-            Assignees = assignees;
-            Milestone = milestone;
-            Locked = locked;
-            ActiveLockReason = activeLockReason;
-            Comments = comments;
-            PullRequest = pullRequest;
-            ClosedAt = closedAt;
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
-            Repository = repository;
-        }
-
         /// <summary>
         /// The internal Id for this issue (not the issue number)
         /// </summary>
@@ -180,18 +145,6 @@ namespace Git_Watcher_Client.Dto
             
         }
 
-        [JsonConstructor]
-        public Label(long id, string nodeId, Uri url, string name, string description, string color, bool @default)
-        {
-            Id = id;
-            NodeId = nodeId;
-            Url = url;
-            Name = name;
-            Description = description;
-            Color = color;
-            Default = @default;
-        }
-
         [JsonProperty("id")] public long Id { get; set; }
 
         [JsonProperty("node_id")] public string NodeId { get; set; }
@@ -214,27 +167,6 @@ namespace Git_Watcher_Client.Dto
         public Milestone()
         {
             
-        }
-
-        [JsonConstructor]
-        public Milestone(Uri url, Uri htmlUrl, Uri labelsUrl, long id, string nodeId, long number, string state, string title, string description, Assignee creator, long openIssues, long closedIssues, DateTimeOffset createdAt, DateTimeOffset updatedAt, DateTimeOffset closedAt, DateTimeOffset dueOn)
-        {
-            Url = url;
-            HtmlUrl = htmlUrl;
-            LabelsUrl = labelsUrl;
-            Id = id;
-            NodeId = nodeId;
-            Number = number;
-            State = state;
-            Title = title;
-            Description = description;
-            Creator = creator;
-            OpenIssues = openIssues;
-            ClosedIssues = closedIssues;
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
-            ClosedAt = closedAt;
-            DueOn = dueOn;
         }
 
         [JsonProperty("url")] public Uri Url { get; set; }
@@ -278,17 +210,7 @@ namespace Git_Watcher_Client.Dto
         {
             
         }
-
         
-        [JsonConstructor]
-        public PullRequest(Uri url, Uri htmlUrl, Uri diffUrl, Uri patchUrl)
-        {
-            Url = url;
-            HtmlUrl = htmlUrl;
-            DiffUrl = diffUrl;
-            PatchUrl = patchUrl;
-        }
-
         [JsonProperty("url")] public Uri Url { get; set; }
 
         [JsonProperty("html_url")] public Uri HtmlUrl { get; set; }
